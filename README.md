@@ -2,8 +2,6 @@
 
 This document lists all available methods for installing **SKILL** and **MCP** in all supported IDEs.
 
-The Deeplink examples provided here are for illustration purposes. In practice, links should be dynamically generated (e.g., prompting users to log in first so their `API_KEY` is pre-filled in weights, avoiding manual configuration later).
-
 ---
 
 ## Contents
@@ -39,7 +37,7 @@ Please confirm the installation scope:
 ### MCP Installation
 
 #### Method 1: One-Click Deeplink Installation
-👉 [Click to install MCP to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
+[<img src="https://img.shields.io/badge/Install%20to%20Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" />](cursor://anysphere.cursor-deeplink/mcp/install?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
 
 #### Method 2: Manually Edit Configuration
 Edit `.cursor/mcp.json` (Project-level) or `~/.cursor/mcp.json` (Global):
@@ -82,7 +80,11 @@ Please confirm the installation scope:
 ### MCP Installation
 
 #### Method 1: One-Click Deeplink Installation
-👉 [Click to install MCP to VSCode](vscode:mcp/install?%7B%22name%22%3A%22debug-mcp-server%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
+[<img src="https://img.shields.io/badge/Install%20to%20VSCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" />](vscode:mcp/install?%7B%22name%22%3A%22debug-mcp-server%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
+
+Entry your api_key in the setup panel.
+
+
 
 #### Method 2: Manually Edit Configuration
 Edit `.vscode/settings.json`:
