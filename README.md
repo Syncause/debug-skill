@@ -25,7 +25,7 @@ This document provides all available methods for installing **SKILL** and **MCP*
 Have the Agent automatically download and install the skill:
 ```
 Help me install the Agent Skill: syncause-debugger
-GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
+GitHub: https://github.com/Syncause/debug-skill/tree/master/skills/syncause-debugger
 
 Please confirm the installation scope:
 - Project-level: Install to the .cursor/skills/ directory
@@ -36,14 +36,13 @@ Please confirm the installation scope:
 
 ### Step 2: MCP Installation
 
-#### Method 1: One-Click Deeplink Installation
+#### One-Click Deeplink Installation
 [<img src="https://img.shields.io/badge/Install%20to%20Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" />](cursor://anysphere.cursor-deeplink/mcp/install?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
 
 > [!NOTE]
 > Update the `API_KEY` in the setup panel, then click the `Install` button.
 
-#### Method 2: Manually Edit Configuration
-Edit `.cursor/mcp.json` (Project-level) or `~/.cursor/mcp.json` (Global):
+**Or,** manually edit `.cursor/mcp.json` (Project-level) or `~/.cursor/mcp.json` (Global):
 ```json
 {
   "mcpServers": {
@@ -62,7 +61,7 @@ Edit `.cursor/mcp.json` (Project-level) or `~/.cursor/mcp.json` (Global):
 
 ## VSCode
 
-### Step1: SKILL Installation
+### Step 1: SKILL Installation
 
 > [!IMPORTANT]
 > Ensure that:
@@ -72,7 +71,7 @@ Edit `.cursor/mcp.json` (Project-level) or `~/.cursor/mcp.json` (Global):
 #### Prompt-Guided Installation
 ```
 Help me install the Agent Skill: syncause-debugger
-GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
+GitHub: https://github.com/Syncause/debug-skill/tree/master/skills/syncause-debugger
 Please confirm the installation scope:
 - Project-level: Install to the .github/skills/ directory
 - Global: Install to the ~/.copilot/skills/ directory
@@ -80,9 +79,9 @@ Please confirm the installation scope:
 
 ---
 
-### Step2: MCP Installation
+### Step 2: MCP Installation
 
-#### Method 1: One-Click Deeplink Installation
+#### One-Click Deeplink Installation
 [<img src="https://img.shields.io/badge/Install%20to%20VSCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" />](vscode:mcp/install?%7B%22name%22%3A%22debug-mcp-server%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
 
 > [!NOTE]
@@ -90,8 +89,7 @@ Please confirm the installation scope:
 > 2. Click the settings icon to the right of the `Install` button.
 > 3. Update the `API_KEY` in the opened `mcp.json` file.
  
-#### Method 2: Manually Edit Configuration
-Edit `.vscode/settings.json`:
+**Or,** manually edit `.vscode/settings.json`:
 ```json
 {
   "servers": {
@@ -108,12 +106,12 @@ Edit `.vscode/settings.json`:
 
 ## Claude Code
 
-### Step1: SKILL Installation
+### Step 1: SKILL Installation
 
 #### Prompt-Guided Installation
 ```
 Help me install the Agent Skill: syncause-debugger
-GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
+GitHub: https://github.com/Syncause/debug-skill/tree/master/skills/syncause-debugger
 
 Please confirm the installation scope:
 - Project-level: Install to the .claude/skills/ directory
@@ -122,9 +120,9 @@ Please confirm the installation scope:
 
 ---
 
-### Step2: MCP Installation
+### Step 2: MCP Installation
 
-#### Method 1: CLI Command (Recommended)
+#### CLI Command (Recommended)
 ```bash
 # Project-level
 claude mcp add --scope project debug-mcp-server -e API_KEY=your-api-key -- npx -y @syncause/debug-mcp@latest
@@ -133,8 +131,7 @@ claude mcp add --scope project debug-mcp-server -e API_KEY=your-api-key -- npx -
 claude mcp add --scope user debug-mcp-server -e API_KEY=your-api-key -- npx -y @syncause/debug-mcp@latest
 ```
 
-#### Method 2: Manually Edit Configuration
-Edit `.mcp.json` (Project-level) or `~/.claude/settings.json` (User-level):
+**Or,** manually edit `.mcp.json` (Project-level) or `~/.claude/settings.json` (User-level):
 ```json
 {
   "mcpServers": {
@@ -151,13 +148,13 @@ Edit `.mcp.json` (Project-level) or `~/.claude/settings.json` (User-level):
 
 ## Codex
 
-### Step1: SKILL Installation
+### Step 1: SKILL Installation
 
 
 #### Prompt-Guided Installation
 ```
 Help me install the Agent Skill: syncause-debugger
-GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
+GitHub: https://github.com/Syncause/debug-skill/tree/master/skills/syncause-debugger
 
 Please confirm the installation scope:
 - Project-level: Install to the .codex/skills/ directory
@@ -166,15 +163,14 @@ Please confirm the installation scope:
 
 ---
 
-### Step2: MCP Installation
+### Step 2: MCP Installation
 
-#### Method 1: CLI Command (Recommended)
+#### CLI Command (Recommended)
 ```bash
 codex mcp add debug-mcp-server --env API_KEY=your-api-key --command "npx -y @syncause/debug-mcp@latest"
 ```
 
-#### Method 2: Manually Edit Configuration
-Edit `~/.codex/config.toml`:
+**Or,** manually edit `~/.codex/config.toml`:
 ```toml
 [mcp_servers.debug-mcp-server]
 command = "npx"
@@ -188,9 +184,9 @@ API_KEY = "your-api-key"
 
 ## Gemini CLI
 
-### Step1: SKILL Installation
+### Step 1: SKILL Installation
 
-#### Method 1: CLI Command (Recommended)
+#### CLI Command (Recommended)
 ```bash
 # Project-level
 gemini skills install https://github.com/Syncause/debug-skill.git --path skills/syncause-debugger --scope workspace
@@ -199,11 +195,10 @@ gemini skills install https://github.com/Syncause/debug-skill.git --path skills/
 gemini skills install https://github.com/Syncause/debug-skill.git --path skills/syncause-debugger
 ```
 
-#### Method 2: Prompt-Guided Installation
-Run the following command in the Agent chat window within your terminal:
+**Or,** run the following in the Agent chat window within your terminal:
 ```
 Help me install the Agent Skill: syncause-debugger
-GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
+GitHub: https://github.com/Syncause/debug-skill/tree/master/skills/syncause-debugger
 
 Please confirm the installation scope:
 - Project-level: Install to the .gemini/skills/ directory
@@ -212,15 +207,14 @@ Please confirm the installation scope:
 
 ---
 
-### Step2: MCP Installation
+### Step 2: MCP Installation
 
-#### Method 1: CLI Command (Recommended)
+#### CLI Command (Recommended)
 ```bash
 gemini mcp add debug-mcp-server -e API_KEY=your-api-key -- npx -y @syncause/debug-mcp@latest
 ```
 
-#### Method 2: Manually Edit Configuration
-Edit `.gemini/settings.json` (Project-level) or `~/.gemini/settings.json` (Global):
+**Or,** manually edit `.gemini/settings.json` (Project-level) or `~/.gemini/settings.json` (Global):
 ```json
 {
   "mcpServers": {
@@ -237,12 +231,12 @@ Edit `.gemini/settings.json` (Project-level) or `~/.gemini/settings.json` (Globa
 
 ## Antigravity
 
-### Step1: SKILL Installation
+### Step 1: SKILL Installation
 
 #### Prompt-Guided Installation
 ```
 Help me install the Agent Skill: syncause-debugger
-GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
+GitHub: https://github.com/Syncause/debug-skill/tree/master/skills/syncause-debugger
 
 Please confirm the installation scope:
 - Project-level: Install to the .agent/skills/ directory
@@ -251,9 +245,9 @@ Please confirm the installation scope:
 
 ---
 
-### Step2: MCP Installation
+### Step 2: MCP Installation
 
-#### Method 1: Manually Edit Configuration (Recommended)
+#### Manually Edit Configuration
 Edit `~/.gemini/antigravity/mcp_config.json` (Global):
 ```json
 {
@@ -271,12 +265,12 @@ Edit `~/.gemini/antigravity/mcp_config.json` (Global):
 
 ## Windsurf
 
-### Step1: SKILL Installation
+### Step 1: SKILL Installation
 
 #### Prompt-Guided Installation
 ```
 Help me install the Agent Skill: syncause-debugger
-GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
+GitHub: https://github.com/Syncause/debug-skill/tree/master/skills/syncause-debugger
 
 Please confirm the installation scope:
 - Project-level: Install to the .windsurf/skills/ directory
@@ -285,9 +279,9 @@ Please confirm the installation scope:
 
 ---
 
-### Step2: MCP Installation
+### Step 2: MCP Installation
 
-#### Method 1: Manually Edit Configuration
+#### Manually Edit Configuration
 Edit `~/.codeium/windsurf/mcp_config.json`:
 ```json
 {
@@ -305,12 +299,12 @@ Edit `~/.codeium/windsurf/mcp_config.json`:
 
 ## Opencode
 
-### Step1: SKILL Installation
+### Step 1: SKILL Installation
 
 #### Prompt-Guided Installation
 ```
 Help me install the Agent Skill: syncause-debugger
-GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
+GitHub: https://github.com/Syncause/debug-skill/tree/master/skills/syncause-debugger
 
 Please confirm the installation scope:
 - Project-level: Install to the .opencode/skills/ directory
@@ -322,9 +316,9 @@ Please confirm the installation scope:
 
 ---
 
-### Step2: MCP Installation
+### Step 2: MCP Installation
 
-#### Method 1: Manually Edit Configuration
+#### Manually Edit Configuration
 Edit `~/.config/opencode/opencode.json`:
 ```json
 {
