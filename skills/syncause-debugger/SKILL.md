@@ -5,8 +5,9 @@ description: Debug and fix bugs using runtime traces. Supported Python, Node.js,
 
 # Syncause Debugger
 
-Runtime trace-based debugging. 3 phases: Setup → Analyze → Teardown.
+Use runtime traces to enhance bug fixing: collect runtime data with the SDK, then analyze with MCP tools.
 
+**Before fix, create a detailed plan** to ensure no details are missed, always include 3 phases: Setup → Analyze → Teardown.
 
 ## Phase 1: Setup
 
@@ -20,11 +21,11 @@ Verify SDK NOT already installed by checking dependency files:
 - Node.js: `package.json`
 - Python: `requirements.txt` or `pyproject.toml`
 
-⚠️ `.syncause` folder is NOT a reliable indicator.
+**WARNING:** `.syncause` folder is NOT a reliable indicator.
 
 ### Steps
 1. **Get credentials**: `get_project_id(projectPath)` → returns `projectId`, `apiKey`, `appName`
-   - ⚠️ If tool not found or returns `Unauthorized`, **STOP** and follow [Pre-check](#pre-check).
+   - **WARNING:** If tool not found or returns `Unauthorized`, **STOP** and follow [Pre-check](#pre-check).
 2. **Install SDK**: Follow language guide:
    - [Java](./references/install/java.md)
    - [Node.js](./references/install/nodejs.md)
@@ -40,7 +41,7 @@ Verify SDK NOT already installed by checking dependency files:
 search_debug_traces(query="<symptom>") → pick traceId
 
 # Step 2: Get call tree
-get_trace_insight(traceId) → find ❌ [ERROR] node
+get_trace_insight(traceId) → find [ERROR] node
 
 # Step 3: Inspect method
 inspect_method_snapshot(traceId, methodName) → check args/return/logs
@@ -49,9 +50,9 @@ inspect_method_snapshot(traceId, methodName) → check args/return/logs
 diff_trace_execution(baseTraceId) → compare fail vs success
 ```
 
-**Fix**: Edit code based on findings, re-run to verify.
+**Fix**: Edit code based on findings, re-run to verify. After fix is confirmed, **ALWAYS proceed to Phase 3: Teardown**.
 
-⚠️ No traces? → Return to Phase 1, ensure SDK active and bug reproduced.
+**WARNING:** No traces? → Return to Phase 1, ensure SDK active and bug reproduced.
 
 ## Phase 3: Teardown
 
