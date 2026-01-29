@@ -1,6 +1,6 @@
 # Syncause Debugger - Full Installation Guide
 
-This document lists all available methods for installing **SKILL** and **MCP** in all supported IDEs.
+This document provides all available methods for installing **SKILL** and **MCP** across all supported IDEs.
 
 ---
 
@@ -19,10 +19,10 @@ This document lists all available methods for installing **SKILL** and **MCP** i
 
 ## Cursor
 
-### SKILL Installation
+### Step 1: SKILL Installation
 
 #### Prompt-Guided Installation
-Let the Agent automatically download and install:
+Have the Agent automatically download and install the skill:
 ```
 Help me install the Agent Skill: syncause-debugger
 GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
@@ -34,10 +34,13 @@ Please confirm the installation scope:
 
 ---
 
-### MCP Installation
+### Step 2: MCP Installation
 
 #### Method 1: One-Click Deeplink Installation
 [<img src="https://img.shields.io/badge/Install%20to%20Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" />](cursor://anysphere.cursor-deeplink/mcp/install?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
+
+> [!NOTE]
+> Update the `API_KEY` in the setup panel, then click the `Install` button.
 
 #### Method 2: Manually Edit Configuration
 Edit `.cursor/mcp.json` (Project-level) or `~/.cursor/mcp.json` (Global):
@@ -59,7 +62,7 @@ Edit `.cursor/mcp.json` (Project-level) or `~/.cursor/mcp.json` (Global):
 
 ## VSCode
 
-### SKILL Installation
+### Step1: SKILL Installation
 
 > [!IMPORTANT]
 > Ensure that:
@@ -77,15 +80,16 @@ Please confirm the installation scope:
 
 ---
 
-### MCP Installation
+### Step2: MCP Installation
 
 #### Method 1: One-Click Deeplink Installation
 [<img src="https://img.shields.io/badge/Install%20to%20VSCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" />](vscode:mcp/install?%7B%22name%22%3A%22debug-mcp-server%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
 
-Entry your api_key in the setup panel.
-
-
-
+> [!NOTE]
+> 1. Click the `Install` button.
+> 2. Click the settings icon to the right of the `Install` button.
+> 3. Update the `API_KEY` in the opened `mcp.json` file.
+ 
 #### Method 2: Manually Edit Configuration
 Edit `.vscode/settings.json`:
 ```json
@@ -104,7 +108,7 @@ Edit `.vscode/settings.json`:
 
 ## Claude Code
 
-### SKILL Installation
+### Step1: SKILL Installation
 
 #### Prompt-Guided Installation
 ```
@@ -118,7 +122,7 @@ Please confirm the installation scope:
 
 ---
 
-### MCP Installation
+### Step2: MCP Installation
 
 #### Method 1: CLI Command (Recommended)
 ```bash
@@ -147,7 +151,7 @@ Edit `.mcp.json` (Project-level) or `~/.claude/settings.json` (User-level):
 
 ## Codex
 
-### SKILL Installation
+### Step1: SKILL Installation
 
 
 #### Prompt-Guided Installation
@@ -162,7 +166,7 @@ Please confirm the installation scope:
 
 ---
 
-### MCP Installation
+### Step2: MCP Installation
 
 #### Method 1: CLI Command (Recommended)
 ```bash
@@ -184,7 +188,7 @@ API_KEY = "your-api-key"
 
 ## Gemini CLI
 
-### SKILL Installation
+### Step1: SKILL Installation
 
 #### Method 1: CLI Command (Recommended)
 ```bash
@@ -196,7 +200,7 @@ gemini skills install https://github.com/Syncause/debug-skill.git --path skills/
 ```
 
 #### Method 2: Prompt-Guided Installation
-Execute in the corresponding Agent chat window in the terminal:
+Run the following command in the Agent chat window within your terminal:
 ```
 Help me install the Agent Skill: syncause-debugger
 GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugger
@@ -208,7 +212,7 @@ Please confirm the installation scope:
 
 ---
 
-### MCP Installation
+### Step2: MCP Installation
 
 #### Method 1: CLI Command (Recommended)
 ```bash
@@ -233,7 +237,7 @@ Edit `.gemini/settings.json` (Project-level) or `~/.gemini/settings.json` (Globa
 
 ## Antigravity
 
-### SKILL Installation
+### Step1: SKILL Installation
 
 #### Prompt-Guided Installation
 ```
@@ -247,7 +251,7 @@ Please confirm the installation scope:
 
 ---
 
-### MCP Installation
+### Step2: MCP Installation
 
 #### Method 1: Manually Edit Configuration (Recommended)
 Edit `~/.gemini/antigravity/mcp_config.json` (Global):
@@ -267,7 +271,7 @@ Edit `~/.gemini/antigravity/mcp_config.json` (Global):
 
 ## Windsurf
 
-### SKILL Installation
+### Step1: SKILL Installation
 
 #### Prompt-Guided Installation
 ```
@@ -281,7 +285,7 @@ Please confirm the installation scope:
 
 ---
 
-### MCP Installation
+### Step2: MCP Installation
 
 #### Method 1: Manually Edit Configuration
 Edit `~/.codeium/windsurf/mcp_config.json`:
@@ -301,7 +305,7 @@ Edit `~/.codeium/windsurf/mcp_config.json`:
 
 ## Opencode
 
-### SKILL Installation
+### Step1: SKILL Installation
 
 #### Prompt-Guided Installation
 ```
@@ -314,11 +318,11 @@ Please confirm the installation scope:
 ```
 
 > [!TIP]
-> Opencode is also compatible with Claude formats: `.claude/skills/` and `~/.claude/skills/`
+> Opencode is also compatible with Claude's skill directories: `.claude/skills/` and `~/.claude/skills/`
 
 ---
 
-### MCP Installation
+### Step2: MCP Installation
 
 #### Method 1: Manually Edit Configuration
 Edit `~/.config/opencode/opencode.json`:
