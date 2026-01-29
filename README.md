@@ -37,7 +37,7 @@ Please confirm the installation scope:
 ### Step 2: MCP Installation
 
 #### One-Click Deeplink Installation
-[<img src="https://img.shields.io/badge/Install%20to%20Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" />](cursor://anysphere.cursor-deeplink/mcp/install?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
+[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
 
 > [!NOTE]
 > Update the `API_KEY` in the setup panel, then click the `Install` button.
@@ -82,7 +82,7 @@ Please confirm the installation scope:
 ### Step 2: MCP Installation
 
 #### One-Click Deeplink Installation
-[<img src="https://img.shields.io/badge/Install%20to%20VSCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" />](vscode:mcp/install?%7B%22name%22%3A%22debug-mcp-server%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=debug-mcp-server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
 
 > [!NOTE]
 > 1. Click the `Install` button.
