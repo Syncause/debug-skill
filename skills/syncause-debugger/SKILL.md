@@ -1,6 +1,6 @@
 ---
 name: syncause-debugger
-description: Debug and fix bugs using runtime traces. Supported Python, Node.js, Java ONLY.
+description: Diagnose and fix bugs using runtime execution traces. Use when debugging errors, analyzing failures, or finding root causes in Python, Node.js, or Java applications.
 ---
 
 # Syncause Debugger
