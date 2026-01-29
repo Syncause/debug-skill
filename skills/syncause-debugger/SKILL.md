@@ -8,15 +8,13 @@ description: Debug and fix bugs using runtime traces. Supported Python, Node.js,
 Runtime trace-based debugging. 3 phases: Setup → Analyze → Teardown.
 
 
-
-## Critical Pre-checks
-
-1. **MCP Server**: This skill depends on `syncause-debugger-server` MCP server. If it is not present, **STOP** and request the user to install the MCP server ([Installation Guide](./references/install/mcp-install.md)).
-2. **Authentication**: If any MCP Tool returns a `401 Unauthorized` error, **STOP** and request the user to configure the `API_KEY` ([Installation Guide](./references/install/mcp-install.md)).
-
 ## Phase 1: Setup
 
 ### Pre-check
+
+1. **MCP Server**: This skill depends on `debug-mcp-server` MCP server. If it is not present, **STOP** and request the user to install the MCP server ([Installation Guide](./references/install/mcp-install.md)).
+2. **Authentication**: If any MCP Tool returns a `Unauthorized` error, **STOP** and request the user to configure the `API_KEY` ([Installation Guide](./references/install/mcp-install.md)).
+
 Verify SDK NOT already installed by checking dependency files:
 - Java: `pom.xml` or `build.gradle`
 - Node.js: `package.json`
@@ -26,6 +24,7 @@ Verify SDK NOT already installed by checking dependency files:
 
 ### Steps
 1. **Get credentials**: `get_project_id(projectPath)` → returns `projectId`, `apiKey`, `appName`
+   - ⚠️ If tool not found or returns `Unauthorized`, **STOP** and follow [Pre-check](#pre-check).
 2. **Install SDK**: Follow language guide:
    - [Java](./references/install/java.md)
    - [Node.js](./references/install/nodejs.md)

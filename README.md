@@ -211,7 +211,7 @@ Please confirm the installation scope:
 
 #### CLI Command (Recommended)
 ```bash
-gemini mcp add debug-mcp-server -e API_KEY=your-api-key -- npx -y @syncause/debug-mcp@latest
+gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest -e API_KEY=your-api-key
 ```
 
 **Or,** manually edit `.gemini/settings.json` (Project-level) or `~/.gemini/settings.json` (Global):
