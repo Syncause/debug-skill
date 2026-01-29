@@ -125,10 +125,10 @@ Please confirm the installation scope:
 #### CLI Command (Recommended)
 ```bash
 # Project-level
-claude mcp add --scope project debug-mcp-server -e API_KEY=your-api-key -- npx -y @syncause/debug-mcp@latest
+claude mcp add --scope project debug-mcp-server -e API_KEY='<your_api_key>' -- npx -y @syncause/debug-mcp@latest
 
 # User-level
-claude mcp add --scope user debug-mcp-server -e API_KEY=your-api-key -- npx -y @syncause/debug-mcp@latest
+claude mcp add --scope user debug-mcp-server -e API_KEY='<your_api_key>' -- npx -y @syncause/debug-mcp@latest
 ```
 
 **Or,** manually edit `.mcp.json` (Project-level) or `~/.claude/settings.json` (User-level):
@@ -167,7 +167,7 @@ Please confirm the installation scope:
 
 #### CLI Command (Recommended)
 ```bash
-codex mcp add debug-mcp-server --env API_KEY=your-api-key --command "npx -y @syncause/debug-mcp@latest"
+codex mcp add debug-mcp-server --env API_KEY='<your_api_key>' --command "npx -y @syncause/debug-mcp@latest"
 ```
 
 **Or,** manually edit `~/.codex/config.toml`:
@@ -211,7 +211,7 @@ Please confirm the installation scope:
 
 #### CLI Command (Recommended)
 ```bash
-gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest -e API_KEY=your-api-key
+gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest -e API_KEY='<your_api_key>'
 ```
 
 **Or,** manually edit `.gemini/settings.json` (Project-level) or `~/.gemini/settings.json` (Global):
