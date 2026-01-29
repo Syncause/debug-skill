@@ -86,7 +86,7 @@ Please confirm the installation scope:
 
 > [!NOTE]
 > 1. Click the `Install` button.
-> 2. Click the settings icon to the right of the `Install` button.
+> 2. Click the `⚙️` icon to the right of the `Install` button and click `Show Configuration (JSON)`.
 > 3. Update the `API_KEY` in the opened `mcp.json` file.
  
 **Or,** manually edit `.vscode/settings.json`:
