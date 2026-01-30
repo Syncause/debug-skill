@@ -36,11 +36,14 @@ Please confirm the installation scope:
 
 ### Step 2: MCP Installation
 
+> [!NOTE]
+> Replace '<your-api-key>' with your API key
+
 #### One-Click Deeplink Installation
 [![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
 
-> [!NOTE]
-> Update the `API_KEY` in the setup panel, then click the `Install` button.
+
+Update the `API_KEY` in the setup panel, then click the `Install` button.
 
 **Or,** manually edit `.cursor/mcp.json` (Project-level) or `~/.cursor/mcp.json` (Global):
 ```json
@@ -81,13 +84,16 @@ Please confirm the installation scope:
 
 ### Step 2: MCP Installation
 
+> [!NOTE]
+> Replace '<your-api-key>' with your API key
+
 #### One-Click Deeplink Installation
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=debug-mcp-server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
 
-> [!NOTE]
-> 1. Click the `Install` button.
-> 2. Click the `⚙️` icon to the right of the `Install` button and click `Show Configuration (JSON)`.
-> 3. Update the `API_KEY` in the opened `mcp.json` file.
+1. Click the `Install` button.
+2. Click the `⚙️` icon to the right of the `Install` button and click `Show Configuration (JSON)`.
+3. Update the `API_KEY` in the opened `mcp.json` file.
+4. You can also click the MCP icon in the agent sidebar below the chat box to manage `mcp.json`.
  
 **Or,** manually edit `.vscode/settings.json`:
 ```json
@@ -96,7 +102,7 @@ Please confirm the installation scope:
     "debug-mcp-server": {
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
@@ -122,6 +128,9 @@ Please confirm the installation scope:
 
 ### Step 2: MCP Installation
 
+> [!NOTE]
+> Replace '<your-api-key>' with your API key
+
 #### CLI Command (Recommended)
 ```bash
 # Project-level
@@ -138,7 +147,7 @@ claude mcp add --scope user debug-mcp-server -e API_KEY='<your_api_key>' -- npx 
     "debug-mcp-server": {
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
@@ -165,6 +174,9 @@ Please confirm the installation scope:
 
 ### Step 2: MCP Installation
 
+> [!NOTE]
+> Replace '<your-api-key>' with your API key
+
 #### CLI Command (Recommended)
 ```bash
 codex mcp add debug-mcp-server --env API_KEY='<your_api_key>' --command "npx -y @syncause/debug-mcp@latest"
@@ -177,7 +189,7 @@ command = "npx"
 args = ["-y", "@syncause/debug-mcp@latest"]
 
 [mcp_servers.debug-mcp-server.env]
-API_KEY = "your-api-key"
+API_KEY = "<your-api-key>"
 ```
 
 ---
@@ -209,19 +221,23 @@ Please confirm the installation scope:
 
 ### Step 2: MCP Installation
 
+> [!NOTE]
+> Replace '<your-api-key>' with your API key
+
 #### CLI Command (Recommended)
 ```bash
 gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest -e API_KEY='<your_api_key>'
 ```
 
 **Or,** manually edit `.gemini/settings.json` (Project-level) or `~/.gemini/settings.json` (Global):
+
 ```json
 {
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
@@ -247,19 +263,29 @@ Please confirm the installation scope:
 
 ### Step 2: MCP Installation
 
+> [!NOTE]
+> Replace '<your-api-key>' with your API key
+
 #### Manually Edit Configuration
-Edit `~/.gemini/antigravity/mcp_config.json` (Global):
+
+1. Open the Agent sidebar in the Editor or the Agent Manager view
+2. Click the ”…” (More Actions) menu and select MCP Servers
+3. Select View raw config to open mcp_config.json file
+4. Add the following configuration:
+
 ```json
 {
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
 ```
+
+5.Save the file and click Refresh in the mcp panel to see the new tools
 
 ---
 
@@ -281,6 +307,9 @@ Please confirm the installation scope:
 
 ### Step 2: MCP Installation
 
+> [!NOTE]
+> Replace '<your-api-key>' with your API key
+
 #### Manually Edit Configuration
 Edit `~/.codeium/windsurf/mcp_config.json`:
 ```json
@@ -289,7 +318,7 @@ Edit `~/.codeium/windsurf/mcp_config.json`:
     "debug-mcp-server": {
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
@@ -318,6 +347,9 @@ Please confirm the installation scope:
 
 ### Step 2: MCP Installation
 
+> [!NOTE]
+> Replace '<your-api-key>' with your API key
+
 #### Manually Edit Configuration
 Edit `~/.config/opencode/opencode.json`:
 ```json
@@ -328,7 +360,7 @@ Edit `~/.config/opencode/opencode.json`:
       "type": "local",
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
-      "environment": { "API_KEY": "your-api-key" },
+      "environment": { "API_KEY": "<your-api-key>" },
       "enabled": true
     }
   }
