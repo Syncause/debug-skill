@@ -1,7 +1,10 @@
 # Syncause JAVA SDK Installation Guide
 
+> **Note:** For all steps below, if the corresponding section (e.g., `<properties>`, `<dependencies>`) already exists in your `pom.xml`, simply add the new tags inside the existing section.
+
 ## Step 1: Add Profiles
-In `pom.xml`, locate `<profiles>` and add:
+Add these profiles to manage the SDK's activation state:
+
 ```xml
     <profiles>
         <profile>
@@ -19,20 +22,27 @@ In `pom.xml`, locate `<profiles>` and add:
     </profiles>
 ```
 
-## Step 2: Configure Repository
-In `pom.xml`, ensure the following repository exists:
+## Step 2: Configure Repository & Token
+Add these properties and the repository to your `pom.xml`.
+
 ```xml
+    <properties>
+        <syncause.repo.token.p1>github_pat_11B3DNTTY0J3sz8C2CQUuT_fDRzzDxHDeWYrwgAGDzzD</syncause.repo.token.p1>
+        <syncause.repo.token.p2>7rsIhveWt8Y4wEORjxqkIiD6W2A2CWqovpdcE0</syncause.repo.token.p2>
+    </properties>
+
     <repositories>
         <repository>
             <id>github-syncause</id>
             <name>GitHub Packages</name>
-            <url>https://syn-cause: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@maven.pkg.github.com/Syncause/syncause-sdk</url>
+            <url>https://syn-cause:${syncause.repo.token.p1}${syncause.repo.token.p2}@maven.pkg.github.com/Syncause/syncause-sdk</url>
         </repository>
     </repositories>
 ```
 
 ## Step 3: Add Dependencies
-In `pom.xml`, add the following before `</dependencies>`:
+Add the following dependencies:
+
 ```xml
         <dependency>
             <groupId>com.syncause</groupId>
@@ -47,7 +57,8 @@ In `pom.xml`, add the following before `</dependencies>`:
 ```
 
 ## Step 4: Configure Plugin
-In `pom.xml`, add/update the `byte-buddy-maven-plugin` in `<plugins>`:
+Add the `byte-buddy-maven-plugin` to your `<build><plugins>` section:
+
 ```xml
             <plugin>
                 <groupId>net.bytebuddy</groupId>

@@ -6,7 +6,8 @@
 ## Steps
 
 1.  **Remove Profiles**: Delete the `disable-syncause-ai` and `auto-syncause-ai` profiles from `pom.xml`.
-2.  **Remove Repository**: Delete the `github-syncause` repository from `pom.xml`.
-3.  **Remove Dependencies**: Delete `spring-boot-starter` and `bytebuddy-plugin` dependencies.
-4.  **Remove Plugin**: Delete the `byte-buddy-maven-plugin` configuration from `<plugins>`.
-5.  **Rebuild**: Run `mvn clean package` and restart the application.
+2.  **Remove Properties**: Delete the `syncause.repo.token.p1` and `syncause.repo.token.p2` properties from `pom.xml`.
+3.  **Remove Repository**: Delete the `github-syncause` repository from `pom.xml`.
+4.  **Remove Dependencies**: Delete `spring-boot-starter` and `bytebuddy-plugin` dependencies.
+5.  **Remove Plugin**: Delete the `byte-buddy-maven-plugin` configuration from `<plugins>`.
+6.  **Rebuild**: Run `mvn clean package` and restart the application.
