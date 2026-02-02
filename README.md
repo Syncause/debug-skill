@@ -2,7 +2,13 @@
 
 AI can write code fast, but it still debugs like it’s blind: it only sees static files and whatever you paste into chat.
 
-The Syncause debug skill lets your AI agent pull **real runtime evidence**—stack traces, request params, function inputs/outputs, key variable snapshots, and timelines—so fixes are based on **what actually happened**, not guesses.
+The Syncause debug skill lets your AI agent pull **runtime facts**—stack traces, request params, function inputs/outputs, key variable snapshots, and timelines—so fixes are based on **what actually happened**, not guesses.
+
+This skill is a mandatory instruction set that constrains and guides the Agent's behavior:
+
+- Mandatory Evidence Gathering: Before offering a fix, the Agent must call the MCP to fetch the Runtime Facts from the moment the error occurred.
+- Evidence-Based Repair: When analyzing the issue, the Agent is required to explicitly cite specific data points (e.g., "According to the stack trace, variable user_id was null at line 42...").
+- No More Guessing: This fundamentally prevents the AI from "hallucinating code" when it lacks context.
 
 ## What you get
 
