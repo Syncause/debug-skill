@@ -24,7 +24,7 @@ Verify SDK NOT already installed by checking dependency files:
 **WARNING:** `.syncause` folder is NOT a reliable indicator.
 
 ### Steps
-1. **Initialize Project**: Use `setup_project(projectPath)` to get the `projectId`. Alternatively, use `get_project_list()` to see already configured projects.
+1. **Initialize Project**: Use `setup_project(projectPath)` or `get_project_list()` to get the `projectId`, `apiKey`, and `appName`. These are required for SDK installation in the next step.
    - **WARNING:** If tool not found or returns `Unauthorized`, **STOP** and follow [Pre-check](#pre-check).
 2. **Install SDK**: Follow language guide:
    - [Java](./references/install/java.md)
