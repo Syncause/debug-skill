@@ -21,8 +21,9 @@ Full instructions: [SKILL.md](./skills/syncause-debugger/SKILL.md)
 
 
 ### Available MCP Tools
-- `get_project_id(projectPath)` - Get project credentials
-- `search_debug_traces(query)` - Search for traces
-- `get_trace_insight(traceId)` - Get call tree analysis
-- `inspect_method_snapshot(traceId, methodName)` - Inspect method details
-- `diff_trace_execution(baseTraceId)` - Compare traces
+- `setup_project(projectPath)` - Initialize or retrieve a project's configuration by its path
+- `get_project_list()` - List all initialized projects and their `projectId`s
+- `search_debug_traces(projectId, query, limit)` - Search for relevant error logs or execution traces
+- `get_trace_insight(projectId, traceId)` - Get a complete lifecycle report for a single request
+- `inspect_method_snapshot(projectId, traceId, className, methodName, includeSubCalls)` - Deep dive into a specific method for a given request
+- `diff_trace_execution(projectId, baseTraceId, compareTraceId)` - Compare execution paths and data differences between two requests

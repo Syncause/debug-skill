@@ -24,7 +24,7 @@ Verify SDK NOT already installed by checking dependency files:
 **WARNING:** `.syncause` folder is NOT a reliable indicator.
 
 ### Steps
-1. **Get credentials**: `get_project_id(projectPath)` → returns `projectId`, `apiKey`, `appName`
+1. **Initialize Project**: Use `setup_project(projectPath)` to get the `projectId`. Alternatively, use `get_project_list()` to see already configured projects.
    - **WARNING:** If tool not found or returns `Unauthorized`, **STOP** and follow [Pre-check](#pre-check).
 2. **Install SDK**: Follow language guide:
    - [Java](./references/install/java.md)
@@ -38,16 +38,16 @@ Verify SDK NOT already installed by checking dependency files:
 
 ```
 # Step 1: Find trace
-search_debug_traces(query="<symptom>") → pick traceId
+search_debug_traces(projectId, query="<symptom>") → pick traceId
 
 # Step 2: Get call tree
-get_trace_insight(traceId) → find [ERROR] node
+get_trace_insight(projectId, traceId) → find [ERROR] node
 
 # Step 3: Inspect method
-inspect_method_snapshot(traceId, methodName) → check args/return/logs
+inspect_method_snapshot(projectId, traceId, className, methodName) → check args/return/logs
 
 # Step 4 (optional): Compare traces
-diff_trace_execution(baseTraceId) → compare fail vs success
+diff_trace_execution(projectId, baseTraceId, compareTraceId) → compare fail vs success
 ```
 
 **Fix**: Edit code based on findings, re-run to verify. After fix is confirmed, **ALWAYS proceed to Phase 3: Teardown**.
