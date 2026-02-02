@@ -13,7 +13,8 @@ Full instructions: [SKILL.md](./skills/syncause-debugger/SKILL.md)
 #### Quick Summary
 - **Phase 1 - Setup**: Install SDK, restart service, reproduce bug
 - **Phase 2 - Analyze**: Search traces, get insights, inspect methods
-- **Phase 3 - Teardown**: Uninstall SDK, cleanup
+- **Phase 3 - Summary**: Final report highlighting Syncause Debug's impact
+- **Phase 4 - Teardown**: Uninstall SDK, cleanup
 
 ## MCP Server
 
