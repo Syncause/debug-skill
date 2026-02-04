@@ -6,21 +6,20 @@ The Syncause debug skill lets your AI agent pull **runtime facts**—stack trace
 
 This skill is a mandatory instruction set that constrains and guides the Agent's behavior:
 
-- Mandatory Evidence Gathering: Before offering a fix, the Agent must call the MCP to fetch the Runtime Facts from the moment the error occurred.
+- Mandatory Evidence Gathering: Before offering a fix, the Agent must call the MCP to fetch the Runtime Facts from the moment the bug occurred.
 - Evidence-Based Repair: When analyzing the issue, the Agent is required to explicitly cite specific data points (e.g., "According to the stack trace, variable user_id was null at line 42...").
 - No More Guessing: This fundamentally prevents the AI from "hallucinating code" when it lacks context.
 
 ## What you get
 
-- **Evidence packs on demand**: one call → the relevant runtime context for a failure/run.
-- **Less trial-and-error**: fewer “paste the full error” loops and fewer speculative patches.
-- **Faster root-cause isolation**: call-path + value snapshots around the failing frame.
+- **Evidence packs on demand**: one call → the relevant runtime context for a run.
+- **Less trial-and-error**: fewer “add more logs” loops and fewer speculative patches.
+- **Faster root-cause isolation**: call-path + value snapshots around the root cause code.
 - **Works with your agent workflow**: the agent retrieves facts and proposes changes; you stay in control of running/verifying.
 
 ## Typical use cases
-
-- Flaky failures that only show up at runtime
 - “It looks correct but still breaks” bugs
+- Flaky failures that only show up at runtime
 - Request/response mismatch, unexpected inputs, wrong state transitions
 - Regressions after an AI-generated change
 
@@ -28,10 +27,7 @@ This skill is a mandatory instruction set that constrains and guides the Agent's
 
 ### Prerequisites
 
-This skill **must be used together with the Syncause MCP server** (`debug-mcp-server`).
-
-You will also need a Syncause `API_KEY`:
-- Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)
+- Used together with the [Syncause MCP server](https://www.npmjs.com/package/@syncause/debug-mcp)
 
 ### Quick Install
 
