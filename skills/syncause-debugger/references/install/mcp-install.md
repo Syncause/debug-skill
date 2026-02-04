@@ -1,9 +1,10 @@
 # MCP Server Installation - Configuration Guide
 
-This document provides the **configuration-only** method for installing the `syncause-debugger-server` MCP server.
+This document provides the **configuration-only** method for installing the `@syncause/debug-mcp` MCP server.
+
 You should modify the configuration file for your specific IDE. **Project-level** configuration is recommended where available.
 
----
+If you can't modify the configuration file, you MUST output the instructions to the user, instead of letting the user read this document.
 
 ## Cursor
 
