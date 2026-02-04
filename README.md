@@ -33,7 +33,15 @@ This skill **must be used together with the Syncause MCP server** (`debug-mcp-se
 You will also need a Syncause `API_KEY`:
 - Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)
 
-### Configure your agent
+### Quick Install
+
+Install the skill for your AI agents with a single command:
+
+```bash
+npx skills add Syncause/debug-skill
+```
+
+If your agent isn't automatically detected, please refer to the manual setup guides below:
 
 > [!TIP]
 > The skill and MCP configuration can be installed at either **project-level** or **global/user-level** depending on the agent.
