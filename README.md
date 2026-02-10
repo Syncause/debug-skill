@@ -72,7 +72,7 @@ Please confirm the installation scope:
 
 #### Step 1: Skill installation
 
-> [!IMPORTANT]
+> ⚠️ **IMPORTANT**
 > Ensure that:
 > 1. The GitHub Copilot Chat extension is installed.
 > 2. `chat.useAgentSkills` is enabled in settings.
@@ -311,7 +311,7 @@ Please confirm the installation scope:
 - Global: Install to the ~/.config/opencode/skills/ directory
 ```
 
-> [!TIP]
+> **TIP**
 > OpenCode is also compatible with Claude's skill directories: `.claude/skills/` and `~/.claude/skills/`
 
 #### Step 2: MCP installation
