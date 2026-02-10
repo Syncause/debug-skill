@@ -2,20 +2,15 @@
 
 AI can write code fast, but it still debugs like it’s blind: it only sees static files and whatever you paste into chat.
 
-The Syncause debug skill lets your AI agent pull **runtime facts**—stack traces, request params, function inputs/outputs, key variable snapshots, and timelines—so fixes are based on **what actually happened**, not guesses.
+**Without Syncause**, coding agents often guess and only fix symptoms, so you may need to prompt the agent multiple times to fix the root cause. 
+
+**With Syncause**, agents can fix the root cause in one go. The Syncause debug skill lets your AI agent pull **runtime facts**—stack traces, request params, function inputs/outputs, key variable snapshots, and timelines—so fixes are based on **what actually happened**, not guesses.
 
 This skill is a mandatory instruction set that constrains and guides the Agent's behavior:
 
 - Mandatory Evidence Gathering: Before offering a fix, the Agent must call the MCP to fetch the Runtime Facts from the moment the bug occurred.
 - Evidence-Based Repair: When analyzing the issue, the Agent is required to explicitly cite specific data points (e.g., "According to the stack trace, variable user_id was null at line 42...").
 - No More Guessing: This fundamentally prevents the AI from "hallucinating code" when it lacks context.
-
-## What you get
-
-- **Evidence packs on demand**: one call → the relevant runtime context for a run.
-- **Less trial-and-error**: fewer “add more logs” loops and fewer speculative patches.
-- **Faster root-cause isolation**: call-path + value snapshots around the root cause code.
-- **Works with your agent workflow**: the agent retrieves facts and proposes changes; you stay in control of running/verifying.
 
 ## Typical use cases
 - “It looks correct but still breaks” bugs
@@ -26,10 +21,9 @@ This skill is a mandatory instruction set that constrains and guides the Agent's
 ## Installation
 
 ### Prerequisites
+This skill should be used together with [Syncause MCP server](https://github.com/Syncause/mcp-server). Follow the [Syncause MCP server installation guide](https://github.com/Syncause/mcp-server/blob/main/README.md) to install the MCP server.
 
-- Used together with the [Syncause MCP server](https://www.npmjs.com/package/@syncause/debug-mcp)
-
-### Quick Install
+### Automatic Installation
 
 Install the skill for your AI agents with a single command:
 
@@ -37,6 +31,7 @@ Install the skill for your AI agents with a single command:
 npx skills add Syncause/debug-skill
 ```
 
+### Manual Installation
 If your agent isn't automatically detected, please refer to the manual setup guides below:
 
 > [!TIP]
@@ -60,8 +55,7 @@ Please confirm the installation scope:
 #### Step 2: MCP installation
 
 > [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
+> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **One-click deeplink installation**  
 [![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
