@@ -19,10 +19,6 @@ This skill is a mandatory instruction set that constrains and guides the Agent's
 - Regressions after an AI-generated change
 
 ## Installation
-
-### Prerequisites
-This skill should be used together with [Syncause MCP server](https://github.com/Syncause/mcp-server). Follow the [Syncause MCP server installation guide](https://github.com/Syncause/mcp-server/blob/main/README.md) to install the MCP server.
-
 ### Automatic Installation
 
 Install the skill for your AI agents with a single command:
@@ -31,11 +27,10 @@ Install the skill for your AI agents with a single command:
 npx skills add Syncause/debug-skill
 ```
 
-### Manual Installation
-If your agent isn't automatically detected, please refer to the manual setup guides below:
+This skill depends on the [Syncause MCP server](https://github.com/Syncause/mcp-server), which will be automatically installed when your agents use this skill. If the installation fails, you will be prompted to install it manually.
 
-> [!TIP]
-> The skill and MCP configuration can be installed at either **project-level** or **global/user-level** depending on the agent.
+### Manual Installation
+If your agent isn't automatically detected in the automatic installation process, please follow the manual setup guides below:
 
 <details>
 <summary><b>Cursor</b></summary>
@@ -102,8 +97,7 @@ Please confirm the installation scope:
 #### Step 2: MCP installation
 
 > [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
+> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **One-click deeplink installation**  
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=debug-mcp-server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
@@ -146,8 +140,7 @@ Please confirm the installation scope:
 #### Step 2: MCP installation
 
 > [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
+> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **CLI command (recommended)**
 ```bash
@@ -191,8 +184,7 @@ Please confirm the installation scope:
 #### Step 2: MCP installation
 
 > [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
+> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **CLI command (recommended)**
 ```bash
@@ -238,8 +230,7 @@ Please confirm the installation scope:
 #### Step 2: MCP installation
 
 > [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
+> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **CLI command (recommended)**
 ```bash
@@ -279,8 +270,7 @@ Please confirm the installation scope:
 #### Step 2: MCP installation
 
 > [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
+> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **Manually edit configuration**
 
@@ -321,8 +311,7 @@ Please confirm the installation scope:
 #### Step 2: MCP installation
 
 > [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
+> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **Manually edit configuration**  
 Edit `~/.codeium/windsurf/mcp_config.json`:
@@ -361,8 +350,7 @@ Please confirm the installation scope:
 #### Step 2: MCP installation
 
 > [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
+> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **Manually edit configuration**  
 Edit `~/.config/opencode/opencode.json`:
