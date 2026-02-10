@@ -2,7 +2,7 @@
 
 AI can write code fast, but it still debugs like it’s blind: it only sees static files and whatever you paste into chat.
 
-**Without Syncause**, coding agents often guess and only fix symptoms, so you may need to prompt the agent multiple times to fix the root cause. 
+**Without Syncause**, coding agents often guess and only fix symptoms, so you may need to prompt the agent multiple times to fix the root cause.
 
 **With Syncause**, agents can fix the root cause in one go. The Syncause debug skill lets your AI agent pull **runtime facts**—stack traces, request params, function inputs/outputs, key variable snapshots, and timelines—so fixes are based on **what actually happened**, not guesses.
 
@@ -49,13 +49,9 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
-**One-click deeplink installation**  
-[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
-
-Update the `API_KEY` in the setup panel, then click the `Install` button.
+#### One-Click Deeplink Installation
+[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il19Cg==)
 
 **Or,** manually edit `.cursor/mcp.json` (project-level) or `~/.cursor/mcp.json` (global):
 ```json
@@ -63,10 +59,7 @@ Update the `API_KEY` in the setup panel, then click the `Install` button.
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": {
-        "API_KEY": "<your-api-key>"
-      }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -96,16 +89,9 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
-**One-click deeplink installation**  
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=debug-mcp-server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
-
-1. Click the `Install` button.
-2. Click the `⚙️` icon to the right of the `Install` button and click `Show Configuration (JSON)`.
-3. Update the `API_KEY` in the opened `mcp.json` file.
-4. You can also click the MCP icon in the agent sidebar below the chat box to manage `mcp.json`.
+#### One-Click Deeplink Installation
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https%3A%2F%2Finsiders.vscode.dev%2Fredirect%2Fmcp%2Finstall%3Fname%3Ddebug-mcp-server%26config%3D%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%7D%7D)
 
 **Or,** manually edit `.vscode/settings.json`:
 ```json
@@ -113,8 +99,7 @@ Please confirm the installation scope:
   "servers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "<your-api-key>" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -139,16 +124,14 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **CLI command (recommended)**
 ```bash
 # Project-level
-claude mcp add --scope project debug-mcp-server -e API_KEY='<your-api-key>' -- npx -y @syncause/debug-mcp@latest
+claude mcp add --scope project debug-mcp-server -- npx -y @syncause/debug-mcp@latest
 
 # User-level
-claude mcp add --scope user debug-mcp-server -e API_KEY='<your-api-key>' -- npx -y @syncause/debug-mcp@latest
+claude mcp add --scope user debug-mcp-server -- npx -y @syncause/debug-mcp@latest
 ```
 
 **Or,** manually edit `.mcp.json` (project-level) or `~/.claude/settings.json` (user-level):
@@ -157,8 +140,7 @@ claude mcp add --scope user debug-mcp-server -e API_KEY='<your-api-key>' -- npx 
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "<your-api-key>" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -183,12 +165,10 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **CLI command (recommended)**
 ```bash
-codex mcp add debug-mcp-server --env API_KEY='<your-api-key>' --command "npx -y @syncause/debug-mcp@latest"
+codex mcp add debug-mcp-server --command "npx -y @syncause/debug-mcp@latest"
 ```
 
 **Or,** manually edit `~/.codex/config.toml`:
@@ -196,9 +176,6 @@ codex mcp add debug-mcp-server --env API_KEY='<your-api-key>' --command "npx -y 
 [mcp_servers.debug-mcp-server]
 command = "npx"
 args = ["-y", "@syncause/debug-mcp@latest"]
-
-[mcp_servers.debug-mcp-server.env]
-API_KEY = "<your-api-key>"
 ```
 
 </details>
@@ -229,13 +206,10 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **CLI command (recommended)**
 ```bash
-gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest -e API_KEY='<your-api-key>'
-```
+gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest
 
 **Or,** manually edit `.gemini/settings.json` (project-level) or `~/.gemini/settings.json` (global):
 ```json
@@ -243,8 +217,7 @@ gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest -e API_KEY='<y
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "<your-api-key>" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -269,8 +242,6 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
 **Manually edit configuration**
 
@@ -283,8 +254,7 @@ Please confirm the installation scope:
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "<your-api-key>" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -310,18 +280,15 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
-**Manually edit configuration**  
+**Manually edit configuration**
 Edit `~/.codeium/windsurf/mcp_config.json`:
 ```json
 {
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "<your-api-key>" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -349,10 +316,8 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> **API Key Recommended**: Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard) for higher rate limits. Replace `<your-api-key>` with your API key.
 
-**Manually edit configuration**  
+**Manually edit configuration**
 Edit `~/.config/opencode/opencode.json`:
 ```json
 {
@@ -362,7 +327,6 @@ Edit `~/.config/opencode/opencode.json`:
       "type": "local",
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
-      "environment": { "API_KEY": "<your-api-key>" },
       "enabled": true
     }
   }

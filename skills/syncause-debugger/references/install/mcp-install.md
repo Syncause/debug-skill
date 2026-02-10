@@ -15,10 +15,7 @@ Edit `.cursor/mcp.json` (Project-level) or `~/.cursor/mcp.json` (Global):
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": {
-        "API_KEY": "<your-api-key>"
-      }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -35,8 +32,7 @@ Edit `.vscode/settings.json`:
   "mcp.servers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -53,8 +49,7 @@ Edit `.mcp.json` (Project-level) or `~/.claude/settings.json` (User-level):
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -71,8 +66,6 @@ Edit `~/.codex/config.toml`:
 command = "npx"
 args = ["-y", "@syncause/debug-mcp@latest"]
 
-[mcp_servers.debug-mcp-server.env]
-API_KEY = "your-api-key"
 ```
 
 ---
@@ -86,8 +79,7 @@ Edit `.gemini/settings.json` (Project-level) or `~/.gemini/settings.json` (Globa
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -104,8 +96,7 @@ Edit `~/.gemini/antigravity/mcp_config.json` (Global):
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -122,8 +113,7 @@ Edit `~/.codeium/windsurf/mcp_config.json`:
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": { "API_KEY": "your-api-key" }
+      "args": ["-y", "@syncause/debug-mcp@latest"]
     }
   }
 }
@@ -143,7 +133,6 @@ Edit `~/.config/opencode/opencode.json`:
       "type": "local",
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
-      "environment": { "API_KEY": "your-api-key" },
       "enabled": true
     }
   }
