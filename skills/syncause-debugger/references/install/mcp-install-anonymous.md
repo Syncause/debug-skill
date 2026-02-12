@@ -1,6 +1,6 @@
-# MCP Server Installation - Configuration Guide
+# MCP Server Installation - Anonymous Mode (Default)
 
-This document provides the **configuration-only** method for installing the `@syncause/debug-mcp` MCP server.
+This document provides the **configuration-only** method for installing the `@syncause/debug-mcp` MCP server. Anonymous mode is the default and does not require an API key.
 
 You should modify the configuration file for your specific IDE. **Project-level** configuration is recommended where available.
 
@@ -65,7 +65,6 @@ Edit `~/.codex/config.toml`:
 [mcp_servers.debug-mcp-server]
 command = "npx"
 args = ["-y", "@syncause/debug-mcp@latest"]
-
 ```
 
 ---

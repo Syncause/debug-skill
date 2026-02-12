@@ -18,6 +18,12 @@ This skill is a mandatory instruction set that constrains and guides the Agent's
 - Request/response mismatch, unexpected inputs, wrong state transitions
 - Regressions after an AI-generated change
 
+## Authentication Modes
+
+The Syncause debug skill supports two modes:
+- **Anonymous Mode (Default)**: No configuration required. Data is stored anonymously on your local device or temporary cloud storage. [Anonymous Mode Guide](./skills/syncause-debugger/references/install/mcp-install-anonymous.md)
+- **Login Mode**: Requires a `API_KEY`. Provides access to persisted traces and collaboration features. [Login Mode Guide](./skills/syncause-debugger/references/install/mcp-install-login.md)
+
 ## Installation
 ### Automatic Installation
 
@@ -30,7 +36,7 @@ npx skills add Syncause/debug-skill
 This skill depends on the [Syncause MCP server](https://github.com/Syncause/mcp-server), which will be automatically installed when your agents use this skill. If the installation fails, you will be prompted to install it manually.
 
 ### Manual Installation
-If your agent isn't automatically detected in the automatic installation process, please follow the manual setup guides below:
+If your agent isn't automatically detected in the automatic installation process, follow the manual setup guides below. For detailed configuration (including Login Mode), see the [Anonymous Guide](./skills/syncause-debugger/references/install/mcp-install-anonymous.md) or [Login Guide](./skills/syncause-debugger/references/install/mcp-install-login.md).
 
 <details>
 <summary><b>Cursor</b></summary>
@@ -59,11 +65,14 @@ Please confirm the installation scope:
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"]
+      "args": ["-y", "@syncause/debug-mcp@latest"],
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
+
 
 </details>
 
@@ -99,11 +108,13 @@ Please confirm the installation scope:
   "servers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"]
+      "args": ["-y", "@syncause/debug-mcp@latest"],
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 
@@ -140,11 +151,13 @@ claude mcp add --scope user debug-mcp-server -- npx -y @syncause/debug-mcp@lates
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"]
+      "args": ["-y", "@syncause/debug-mcp@latest"],
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 
@@ -176,7 +189,12 @@ codex mcp add debug-mcp-server --command "npx -y @syncause/debug-mcp@latest"
 [mcp_servers.debug-mcp-server]
 command = "npx"
 args = ["-y", "@syncause/debug-mcp@latest"]
+
+[mcp_servers.debug-mcp-server.env]
+API_KEY = "<your-api-key>"
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
+
 
 </details>
 
@@ -217,11 +235,13 @@ gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"]
+      "args": ["-y", "@syncause/debug-mcp@latest"],
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 
@@ -254,11 +274,13 @@ Please confirm the installation scope:
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"]
+      "args": ["-y", "@syncause/debug-mcp@latest"],
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 5. Save the file and click Refresh in the MCP panel to see the new tools
 
 </details>
@@ -288,11 +310,13 @@ Edit `~/.codeium/windsurf/mcp_config.json`:
   "mcpServers": {
     "debug-mcp-server": {
       "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"]
+      "args": ["-y", "@syncause/debug-mcp@latest"],
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 
@@ -319,6 +343,7 @@ Please confirm the installation scope:
 
 **Manually edit configuration**
 Edit `~/.config/opencode/opencode.json`:
+
 ```json
 {
   "$schema": "http://opencode.ai/config.json",
@@ -327,11 +352,13 @@ Edit `~/.config/opencode/opencode.json`:
       "type": "local",
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
+      "environment": { "API_KEY": "<your-api-key>" },
       "enabled": true
     }
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 
