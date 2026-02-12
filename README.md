@@ -2,7 +2,9 @@
 
 AI can write code fast, but it still debugs like it’s blind: it only sees static files and whatever you paste into chat.
 
-The Syncause debug skill lets your AI agent pull **runtime facts**—stack traces, request params, function inputs/outputs, key variable snapshots, and timelines—so fixes are based on **what actually happened**, not guesses.
+**Without Syncause**, coding agents often guess and only fix symptoms, so you may need to prompt the agent multiple times to fix the root cause.
+
+**With Syncause**, agents can fix the root cause in one go. The Syncause debug skill lets your AI agent pull **runtime facts**—stack traces, request params, function inputs/outputs, key variable snapshots, and timelines—so fixes are based on **what actually happened**, not guesses.
 
 This skill is a mandatory instruction set that constrains and guides the Agent's behavior:
 
@@ -10,26 +12,20 @@ This skill is a mandatory instruction set that constrains and guides the Agent's
 - Evidence-Based Repair: When analyzing the issue, the Agent is required to explicitly cite specific data points (e.g., "According to the stack trace, variable user_id was null at line 42...").
 - No More Guessing: This fundamentally prevents the AI from "hallucinating code" when it lacks context.
 
-## What you get
-
-- **Evidence packs on demand**: one call → the relevant runtime context for a run.
-- **Less trial-and-error**: fewer “add more logs” loops and fewer speculative patches.
-- **Faster root-cause isolation**: call-path + value snapshots around the root cause code.
-- **Works with your agent workflow**: the agent retrieves facts and proposes changes; you stay in control of running/verifying.
-
 ## Typical use cases
 - “It looks correct but still breaks” bugs
 - Flaky failures that only show up at runtime
 - Request/response mismatch, unexpected inputs, wrong state transitions
 - Regressions after an AI-generated change
 
+## Authentication Modes
+
+The Syncause debug skill supports two modes:
+- **Anonymous Mode (Default)**: No configuration required. Data is stored anonymously on your local device or temporary cloud storage. [Anonymous Mode Guide](./skills/syncause-debugger/references/install/mcp-install-anonymous.md)
+- **Login Mode**: Requires a `API_KEY`. Provides access to persisted traces and collaboration features. [Login Mode Guide](./skills/syncause-debugger/references/install/mcp-install-login.md)
+
 ## Installation
-
-### Prerequisites
-
-- Used together with the [Syncause MCP server](https://www.npmjs.com/package/@syncause/debug-mcp)
-
-### Quick Install
+### Automatic Installation
 
 Install the skill for your AI agents with a single command:
 
@@ -37,10 +33,10 @@ Install the skill for your AI agents with a single command:
 npx skills add Syncause/debug-skill
 ```
 
-If your agent isn't automatically detected, please refer to the manual setup guides below:
+This skill depends on the [Syncause MCP server](https://github.com/Syncause/mcp-server), which will be automatically installed when your agents use this skill. If the installation fails, you will be prompted to install it manually.
 
-> [!TIP]
-> The skill and MCP configuration can be installed at either **project-level** or **global/user-level** depending on the agent.
+### Manual Installation
+If your agent isn't automatically detected in the automatic installation process, follow the manual setup guides below. For detailed configuration (including Login Mode), see the [Anonymous Guide](./skills/syncause-debugger/references/install/mcp-install-anonymous.md) or [Login Guide](./skills/syncause-debugger/references/install/mcp-install-login.md).
 
 <details>
 <summary><b>Cursor</b></summary>
@@ -59,14 +55,9 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
 
-**One-click deeplink installation**  
-[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il0sImVudiI6eyJBUElfS0VZIjoiPHlvdXItYXBpLWtleT4ifX0K)
-
-Update the `API_KEY` in the setup panel, then click the `Install` button.
+#### One-Click Deeplink Installation
+[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=debug-mcp-server&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzeW5jYXVzZS9kZWJ1Zy1tY3BAbGF0ZXN0Il19Cg==)
 
 **Or,** manually edit `.cursor/mcp.json` (project-level) or `~/.cursor/mcp.json` (global):
 ```json
@@ -75,13 +66,13 @@ Update the `API_KEY` in the setup panel, then click the `Install` button.
     "debug-mcp-server": {
       "command": "npx",
       "args": ["-y", "@syncause/debug-mcp@latest"],
-      "env": {
-        "API_KEY": "<your-api-key>"
-      }
+      "env": { "API_KEY": "<your-api-key>" }
     }
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
+
 
 </details>
 
@@ -90,7 +81,7 @@ Update the `API_KEY` in the setup panel, then click the `Install` button.
 
 #### Step 1: Skill installation
 
-> [!IMPORTANT]
+> ⚠️ **IMPORTANT**
 > Ensure that:
 > 1. The GitHub Copilot Chat extension is installed.
 > 2. `chat.useAgentSkills` is enabled in settings.
@@ -107,17 +98,9 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
 
-**One-click deeplink installation**  
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=debug-mcp-server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%2C%22env%22%3A%7B%22API_KEY%22%3A%22%3Cyour-api-key%3E%22%7D%7D)
-
-1. Click the `Install` button.
-2. Click the `⚙️` icon to the right of the `Install` button and click `Show Configuration (JSON)`.
-3. Update the `API_KEY` in the opened `mcp.json` file.
-4. You can also click the MCP icon in the agent sidebar below the chat box to manage `mcp.json`.
+#### One-Click Deeplink Installation
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https%3A%2F%2Finsiders.vscode.dev%2Fredirect%2Fmcp%2Finstall%3Fname%3Ddebug-mcp-server%26config%3D%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40syncause%2Fdebug-mcp%40latest%22%5D%7D%7D)
 
 **Or,** manually edit `.vscode/settings.json`:
 ```json
@@ -131,6 +114,7 @@ Please confirm the installation scope:
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 
@@ -151,17 +135,14 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
 
 **CLI command (recommended)**
 ```bash
 # Project-level
-claude mcp add --scope project debug-mcp-server -e API_KEY='<your-api-key>' -- npx -y @syncause/debug-mcp@latest
+claude mcp add --scope project debug-mcp-server -- npx -y @syncause/debug-mcp@latest
 
 # User-level
-claude mcp add --scope user debug-mcp-server -e API_KEY='<your-api-key>' -- npx -y @syncause/debug-mcp@latest
+claude mcp add --scope user debug-mcp-server -- npx -y @syncause/debug-mcp@latest
 ```
 
 **Or,** manually edit `.mcp.json` (project-level) or `~/.claude/settings.json` (user-level):
@@ -176,6 +157,7 @@ claude mcp add --scope user debug-mcp-server -e API_KEY='<your-api-key>' -- npx 
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 
@@ -196,13 +178,10 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
 
 **CLI command (recommended)**
 ```bash
-codex mcp add debug-mcp-server --env API_KEY='<your-api-key>' --command "npx -y @syncause/debug-mcp@latest"
+codex mcp add debug-mcp-server --command "npx -y @syncause/debug-mcp@latest"
 ```
 
 **Or,** manually edit `~/.codex/config.toml`:
@@ -214,6 +193,8 @@ args = ["-y", "@syncause/debug-mcp@latest"]
 [mcp_servers.debug-mcp-server.env]
 API_KEY = "<your-api-key>"
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
+
 
 </details>
 
@@ -243,14 +224,10 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
 
 **CLI command (recommended)**
 ```bash
-gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest -e API_KEY='<your-api-key>'
-```
+gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest
 
 **Or,** manually edit `.gemini/settings.json` (project-level) or `~/.gemini/settings.json` (global):
 ```json
@@ -264,6 +241,7 @@ gemini mcp add debug-mcp-server npx -y @syncause/debug-mcp@latest -e API_KEY='<y
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 
@@ -284,9 +262,6 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
 
 **Manually edit configuration**
 
@@ -305,6 +280,7 @@ Please confirm the installation scope:
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 5. Save the file and click Refresh in the MCP panel to see the new tools
 
 </details>
@@ -326,11 +302,8 @@ Please confirm the installation scope:
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
 
-**Manually edit configuration**  
+**Manually edit configuration**
 Edit `~/.codeium/windsurf/mcp_config.json`:
 ```json
 {
@@ -343,6 +316,7 @@ Edit `~/.codeium/windsurf/mcp_config.json`:
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 
@@ -361,17 +335,15 @@ Please confirm the installation scope:
 - Global: Install to the ~/.config/opencode/skills/ directory
 ```
 
-> [!TIP]
+> **TIP**
 > OpenCode is also compatible with Claude's skill directories: `.claude/skills/` and `~/.claude/skills/`
 
 #### Step 2: MCP installation
 
-> [!NOTE]
-> Get a free API key at [syn-cause.com/dashboard](https://syn-cause.com/dashboard)  
-> Replace `<your-api-key>` with your API key.
 
-**Manually edit configuration**  
+**Manually edit configuration**
 Edit `~/.config/opencode/opencode.json`:
+
 ```json
 {
   "$schema": "http://opencode.ai/config.json",
@@ -386,6 +358,7 @@ Edit `~/.config/opencode/opencode.json`:
   }
 }
 ```
+> **Note:** Environment variables are optional. If not provided, the server will run in anonymous mode.
 
 </details>
 

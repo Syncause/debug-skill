@@ -13,8 +13,8 @@ Use runtime traces to enhance bug fixing: collect runtime data with the SDK, the
 
 ### Pre-check
 
-1. **MCP Server**: This skill depends on `debug-mcp-server` MCP server. If it is not present, **STOP** and request the user to install the MCP server ([Installation Guide](./references/install/mcp-install.md)).
-2. **Authentication**: If any MCP Tool returns a `Unauthorized` error, **STOP** and request the user to configure the `API_KEY` ([Installation Guide](./references/install/mcp-install.md)).
+1. **MCP Server**: This skill depends on `debug-mcp-server` MCP server. If it is not present, **STOP** and request the user to install the MCP server ([Anonymous Mode (Default)](./references/install/mcp-install-anonymous.md) or [Login Mode](./references/install/mcp-install-login.md)).
+2. **Authentication**: If any MCP Tool returns a `Unauthorized` error, **STOP** and request the user to configure the `API_KEY` ([Login Mode Guide](./references/install/mcp-install-login.md)).
 
 Verify SDK NOT already installed by checking dependency files:
 - Java: `pom.xml` or `build.gradle`
@@ -24,7 +24,7 @@ Verify SDK NOT already installed by checking dependency files:
 **WARNING:** `.syncause` folder is NOT a reliable indicator.
 
 ### Steps
-1. **Initialize Project**: Use `setup_project(projectPath)` or `get_project_list()` to get the `projectId`, `apiKey`, and `appName`. These are required for SDK installation in the next step.
+1. **Initialize Project**: Use `setup_project(projectPath)` to get the `projectId`, `apiKey`, and `appName`. These are required for SDK installation in the next step.
    - **WARNING:** If tool not found or returns `Unauthorized`, **STOP** and follow [Pre-check](#pre-check).
 2. **Install SDK**: Follow language guide:
    - [Java](./references/install/java.md)
