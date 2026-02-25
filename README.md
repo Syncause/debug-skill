@@ -18,12 +18,6 @@ This skill is a mandatory instruction set that constrains and guides the Agent's
 - Request/response mismatch, unexpected inputs, wrong state transitions
 - Regressions after an AI-generated change
 
-## Authentication Modes
-
-The Syncause debug skill supports two modes:
-- **Anonymous Mode (Default)**: No configuration required. Data is stored anonymously on your local device or temporary cloud storage. [Anonymous Mode Guide](./skills/syncause-debugger/references/install/mcp-install-anonymous.md)
-- **Login Mode**: Requires a `API_KEY`. Provides access to persisted traces and collaboration features. [Login Mode Guide](./skills/syncause-debugger/references/install/mcp-install-login.md)
-
 ## Installation
 ### Automatic Installation
 
