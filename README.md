@@ -251,7 +251,7 @@ GitHub: https://github.com/Syncause/debug-skill/tree/main/skills/syncause-debugg
 
 Please confirm the installation scope:
 - Project-level: Install to the .agent/skills/ directory
-- Global: Install to the ~/.gemini/antigravity/global_skills/ directory
+- Global: Install to the ~/.gemini/antigravity/skills/ directory
 ```
 
 #### Step 2: MCP installation
@@ -362,13 +362,13 @@ Edit `~/.config/opencode/opencode.json`:
 
 ### Skill directory summary
 
-| IDE         | Project-level Path  | Global Path                            |
-| ----------- | ------------------- | -------------------------------------- |
-| Cursor      | `.cursor/skills/`   | `~/.cursor/skills/`                    |
-| VSCode      | `.github/skills/`   | `~/.copilot/skills/`                   |
-| Claude Code | `.claude/skills/`   | `~/.claude/skills/`                    |
-| Codex       | `.codex/skills/`    | `~/.codex/skills/`                     |
-| Gemini CLI  | `.gemini/skills/`   | `~/.gemini/skills/`                    |
-| Antigravity | `.agent/skills/`    | `~/.gemini/antigravity/global_skills/` |
-| Windsurf    | `.windsurf/skills/` | `~/.codeium/windsurf/skills/`          |
-| OpenCode    | `.opencode/skills/` | `~/.config/opencode/skills/`           |
+| IDE         | Project-level Path  | Global Path                     |
+| ----------- | ------------------- | ------------------------------- |
+| Cursor      | `.cursor/skills/`   | `~/.cursor/skills/`             |
+| VSCode      | `.github/skills/`   | `~/.copilot/skills/`            |
+| Claude Code | `.claude/skills/`   | `~/.claude/skills/`             |
+| Codex       | `.codex/skills/`    | `~/.codex/skills/`              |
+| Gemini CLI  | `.gemini/skills/`   | `~/.gemini/skills/`             |
+| Antigravity | `.agent/skills/`    | `~/.gemini/antigravity/skills/` |
+| Windsurf    | `.windsurf/skills/` | `~/.codeium/windsurf/skills/`   |
+| OpenCode    | `.opencode/skills/` | `~/.config/opencode/skills/`    |
