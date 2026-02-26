@@ -151,6 +151,17 @@ Verify SDK NOT already installed by checking dependency files:
 
 ## Phase 2: Analyze & Fix
 
+To analyze the trace data, you can either parse local traces directly or use the MCP server for exploration.
+
+**Option A: Local Trace Analysis (Recommended for early insights)**
+If the bug was reproduced locally and trace data was generated (e.g. in `.syncause-cache/syncause_debug_.bin`), use the provided analysis script to extract advanced insights like data flow anomalies and exception chains:
+```bash
+python scripts/runtime_analyzer.py .syncause-cache/syncause_debug_.bin
+```
+Use the output of this script to identify the deepest exception origins or data flow issues automatically detected by the tool. This can point you directly to the buggy file and function.
+
+**Option B: Manual MCP Exploration**
+If Option A is not possible, or if you need to further inspect specific nodes, use the MCP server:
 ```
 # Step 1: Find trace (skip if already found in Phase 1 Step 5)
 search_debug_traces(projectId, query="<symptom>") → pick traceId
@@ -158,7 +169,7 @@ search_debug_traces(projectId, query="<symptom>") → pick traceId
 # Step 2: Get call tree
 get_trace_insight(projectId, traceId) → find [ERROR] node
 
-# Step 3: Inspect method
+# Step 3: Inspect method snapshot
 inspect_method_snapshot(projectId, traceId, className, methodName) → check args/return/logs
 
 # Step 4 (optional): Compare traces
