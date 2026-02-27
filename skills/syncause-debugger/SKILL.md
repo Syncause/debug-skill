@@ -168,9 +168,16 @@ Verify SDK NOT already installed by checking dependency files:
 #### Trace-Powered Analysis
 
 **Option A: Local Trace Analysis (Recommended for early insights)**
-If the bug was reproduced locally and trace data was generated (e.g. in `.syncause-cache/syncause_debug_.bin`), use the provided analysis script:
+If the bug was reproduced locally and trace data was generated (e.g. in `.syncause-cache/`), use the provided analysis script:
 ```bash
-python scripts/runtime_analyzer.py .syncause-cache/syncause_debug_.bin
+# Text output (human-readable)
+python3 .agents/skills/syncause-debugger/scripts/analyze_trace.py .syncause-cache/.syncause-cache/.bin
+
+# JSON output (machine-readable)
+python3 .agents/skills/syncause-debugger/scripts/analyze_trace.py .syncause-cache/.syncause-cache/.bin --format json
+
+# With issue context for smarter filtering
+python3 .agents/skills/syncause-debugger/scripts/analyze_trace.py .syncause-cache/.syncause-cache/.bin --issue "describe the bug here"
 ```
 
 **Option B: Manual MCP Exploration**
