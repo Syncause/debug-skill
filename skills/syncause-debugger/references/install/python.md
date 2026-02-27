@@ -205,7 +205,9 @@ from syncause_tracer import initialize
 initialize(
     api_key="{apiKey}",
     app_name="{appName}",
-    project_id="{projectId}"
+    project_id="{projectId}",
+    output_format="json",
+    cache_dir=".syncause-cache/"
 )
 ```
 </step_3>
