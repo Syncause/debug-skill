@@ -33,7 +33,7 @@ If multiple systems exist:
 Append the following line **if it does not already exist** and install the dependency:
 
 ```text
-https://github.com/Syncause/syncause-sdk/releases/download/syncause_tracer_v0.2.7/syncause_tracer-0.2.7-py3-none-any.whl
+https://github.com/Syncause/syncause-sdk/releases/download/syncause_tracer_v0.2.5/syncause_tracer-0.2.5.dev1-py3-none-any.whl
 ```
 
 Rules:
@@ -49,7 +49,7 @@ Add the dependency under `[tool.poetry.dependencies]` and install the dependency
 
 ```toml
 [tool.poetry.dependencies]
-syncause_tracer = { url = "https://github.com/Syncause/syncause-sdk/releases/download/syncause_tracer_v0.2.7/syncause_tracer-0.2.7-py3-none-any.whl" }
+syncause_tracer = { url = "https://github.com/Syncause/syncause-sdk/releases/download/syncause_tracer_v0.2.5/syncause_tracer-0.2.5.dev1-py3-none-any.whl" }
 ```
 
 Rules:
@@ -66,7 +66,7 @@ Add the dependency under `[project.dependencies]` and install the dependency:
 ```toml
 [project]
 dependencies = [
-  "syncause_tracer @ https://github.com/Syncause/syncause-sdk/releases/download/syncause_tracer_v0.2.7/syncause_tracer-0.2.7-py3-none-any.whl"
+  "syncause_tracer @ https://github.com/Syncause/syncause-sdk/releases/download/syncause_tracer_v0.2.5/syncause_tracer-0.2.5.dev1-py3-none-any.whl"
 ]
 ```
 
