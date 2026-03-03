@@ -1,13 +1,21 @@
-# Syncause JAVA SDK Uninstallation Guide
+# Syncause Java Agent Uninstallation Guide
 
-> [!IMPORTANT]
-> Remove the SDK after debugging to restore original performance.
+To uninstall the Java Agent and cleanup the project:
 
-## Steps
+## 1. Delete Wrapper Scripts
+Delete the `scripts/` directory or its contents related to the Syncause agent:
+```bash
+rm scripts/run_java_with_agent.sh scripts/run_java_with_agent.ps1
+```
 
-1.  **Remove Profiles**: Delete the `disable-syncause-ai` and `auto-syncause-ai` profiles from `pom.xml`.
-2.  **Remove Properties**: Delete the `syncause.repo.token.p1` and `syncause.repo.token.p2` properties from `pom.xml`.
-3.  **Remove Repository**: Delete the `github-syncause` repository from `pom.xml`.
-4.  **Remove Dependencies**: Delete `spring-boot-starter` and `bytebuddy-plugin` dependencies.
-5.  **Remove Plugin**: Delete the `byte-buddy-maven-plugin` configuration from `<plugins>`.
-6.  **Rebuild**: Run `mvn clean package` and restart the application.
+## 2. Cleanup Downloaded Agents (Optional)
+The agent JAR is downloaded to `~/.syncause/agents/`. You can delete this directory to free up space:
+```bash
+rm -rf ~/.syncause/agents/
+```
+
+## 3. Remove .syncause Folder
+Delete the `.syncause` folder from the project root:
+```bash
+rm -rf .syncause
+```
