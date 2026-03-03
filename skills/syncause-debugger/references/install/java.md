@@ -25,12 +25,12 @@ if [ -z "$API_KEY" ] || [ -z "$APP_NAME" ] || [ -z "$PROJECT_ID" ]; then
 fi
 
 AGENT_DIR="$HOME/.syncause/agents"
-AGENT_JAR="$AGENT_DIR/syncuase-agent-$AGENT_VERSION.jar"
+AGENT_JAR="$AGENT_DIR/syncause-agent-$AGENT_VERSION.jar"
 
 # Auto-download if doesn't exist
 if [ ! -f "$AGENT_JAR" ]; then
     mkdir -p "$AGENT_DIR"
-    URL="https://github.com/Syncause/syncause-sdk/releases/download/syncause_agent_v$AGENT_VERSION/syncuase-agent-$AGENT_VERSION.jar"
+    URL="https://github.com/Syncause/syncause-sdk/releases/download/syncause_agent_v$AGENT_VERSION/syncause-agent-$AGENT_VERSION.jar"
     echo "Downloading Agent v$AGENT_VERSION for one-time run..."
     curl -L -o "$AGENT_JAR" "$URL"
 fi
@@ -63,12 +63,12 @@ if (-not $env:API_KEY -or -not $env:APP_NAME -or -not $env:PROJECT_ID) {
 }
 
 $agentDir = "$HOME\.syncause\agents"
-$agentJar = Join-Path $agentDir "syncuase-agent-$AGENT_VERSION.jar"
+$agentJar = Join-Path $agentDir "syncause-agent-$AGENT_VERSION.jar"
 
 # Auto-download if doesn't exist
 if (!(Test-Path $agentJar)) {
     if (!(Test-Path $agentDir)) { New-Item -ItemType Directory -Path $agentDir | Out-Null }
-    $url = "https://github.com/Syncause/syncause-sdk/releases/download/syncause_agent_v$AGENT_VERSION/syncuase-agent-$AGENT_VERSION.jar"
+    $url = "https://github.com/Syncause/syncause-sdk/releases/download/syncause_agent_v$AGENT_VERSION/syncause-agent-$AGENT_VERSION.jar"
     Write-Host "Downloading Agent v$AGENT_VERSION for one-time run..."
     Invoke-WebRequest -Uri $url -OutFile $agentJar
 }
