@@ -37,10 +37,18 @@ fi
 
 # Set local environment and exec
 AGENT_OPTS="-javaagent:$AGENT_JAR=api_key=$API_KEY,project_name=$APP_NAME,project_id=$PROJECT_ID"
-export JAVA_TOOL_OPTIONS=$(echo "$JAVA_TOOL_OPTIONS $AGENT_OPTS" | xargs)
+if [[ ! "$JAVA_TOOL_OPTIONS" == *"$AGENT_OPTS"* ]]; then
+  export JAVA_TOOL_OPTIONS=$(echo "$JAVA_TOOL_OPTIONS $AGENT_OPTS" | xargs)
+fi
 
 # Execute the remaining command
-exec "$@"
+# If the command was passed as a single quoted string (e.g., "mvn test"), 
+# let the shell split it. Otherwise, preserve arguments exactly.
+if [ $# -eq 1 ] && [[ "$1" == *" "* ]]; then
+  exec $1
+else
+  exec "$@"
+fi
 ```
 
 ### Step 2.2: Create `scripts/run_java_with_agent.ps1` (for Windows PowerShell)
@@ -75,10 +83,19 @@ if (!(Test-Path $agentJar)) {
 
 # Set local environment and execute
 $agentOpts = "-javaagent:$agentJar=api_key=$env:API_KEY,project_name=$env:APP_NAME,project_id=$env:PROJECT_ID"
-$env:JAVA_TOOL_OPTIONS = "$($env:JAVA_TOOL_OPTIONS) $agentOpts".Trim()
+if ($env:JAVA_TOOL_OPTIONS -notlike "*$agentOpts*") {
+    $env:JAVA_TOOL_OPTIONS = "$($env:JAVA_TOOL_OPTIONS) $agentOpts".Trim()
+}
 
 # Run the command with arguments
-& @Command
+# If the command and args were passed as a single string (e.g., "ant test"), split them.
+if ($Command.Count -eq 1 -and $Command[0] -like "* *") {
+    $Command = $Command[0] -split "\s+"
+}
+
+# Explicitly separate the executable from the arguments for the call operator (&)
+$executable, $arguments = $Command
+& $executable $arguments
 ```
 
 ## 3. Configuration
