@@ -133,7 +133,7 @@ Verify SDK NOT already installed:
       # Node.js
       npx jest reproduceIssue.test.js
       ```
-   2. **Collect traceId**: Call `search_debug_traces(projectId, query="bug keyword", limit=1)`
+   2. **Collect traceId**: Call `search_debug_traces(projectId, query="bug keyword", limit=1, since="30m")`
    3. **Get call tree report**: Use `get_trace_insight(projectId, traceId)` to find `[ERROR]` nodes
 
    #### 6.6 Runtime Trace Verification
@@ -171,7 +171,7 @@ Verify SDK NOT already installed:
 
 ```
 # Step 1: Find trace (skip if already found in Phase 1 Step 5)
-search_debug_traces(projectId, query="<symptom>") → pick traceId
+search_debug_traces(projectId, query="<symptom>", since) → pick traceId
 
 # Step 2: Get call tree
 get_trace_insight(projectId, traceId) → find [ERROR] node

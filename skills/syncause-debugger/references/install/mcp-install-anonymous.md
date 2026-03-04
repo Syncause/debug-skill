@@ -130,8 +130,7 @@ Edit `~/.config/opencode/opencode.json`:
   "mcp": {
     "debug-mcp-server": {
       "type": "local",
-      "command": "npx",
-      "args": ["-y", "@syncause/debug-mcp@latest"],
+      "command": ["npx", "-y", "@syncause/debug-mcp@latest"],
       "enabled": true
     }
   }
