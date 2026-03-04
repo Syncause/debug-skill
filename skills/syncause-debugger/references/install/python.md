@@ -1,5 +1,8 @@
 # Syncause Python SDK Installation Guide
 
+> [!IMPORTANT]
+> **Multi-module Projects**: In projects with multiple applications or services, you MUST run all commands (including `setup_project`) and perform the installation from within the specific application's directory (e.g., where `pyproject.toml` or `requirements.txt` resides), **NOT** the root project path.
+
 <step_1>
 
 ### Add `syncause_tracer` as a Project Dependency

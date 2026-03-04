@@ -9,6 +9,9 @@ curl -sL https://raw.githubusercontent.com/Syncause/ts-agent-file/v1.6.0/install
 ```
 *Note: For Next.js projects, the script downloads `instrumentation.node.next.ts` from GitHub (default `v1.3.0`) and renames it to `instrumentation.node.ts`.*
 
+> [!IMPORTANT]
+> **Multi-module / Monorepo Projects**: In a monorepo, you MUST run all commands (including `setup_project`) and perform the installation from within the specific module/package directory (e.g., `apps/my-app`), **NOT** the monorepo root.
+
 ### Replace apikey and appName in instrumentation.node.ts / instrumentation.node.js
 
 apikey: {apiKey}

@@ -6,7 +6,10 @@ When tasked with installing the Java Agent into a project, follow this prioritiz
 Detect if the project is using Maven (`pom.xml`), Gradle (`build.gradle` or `build.gradle.kts`), or Ant (`build.xml`).
 
 ## 2. Create Wrapper Scripts
-To avoid manual configuration of `JAVA_TOOL_OPTIONS`, you MUST create wrapper scripts in the `scripts/` directory of the project root.
+To avoid manual configuration of `JAVA_TOOL_OPTIONS`, you MUST create wrapper scripts in the `scripts/` directory.
+
+> [!IMPORTANT]
+> **Multi-module Projects**: Create the `scripts/` directory in the same path used for `setup_project(projectPath)` (the specific module's root). All commands should then be executed from this directory.
 
 ### Step 2.1: Create `scripts/run_java_with_agent.sh` (for Linux/macOS/WSL)
 Create the file and make it executable (`chmod +x scripts/run_java_with_agent.sh`).

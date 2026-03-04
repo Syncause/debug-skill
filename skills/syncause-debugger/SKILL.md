@@ -26,6 +26,7 @@ Verify SDK NOT already installed:
 ### Steps
 
 1. **Initialize Project**: Use `setup_project(projectPath)` to get the `projectId`, `apiKey`, and `appName`. These are required for SDK installation in the next step.
+   - **Multi-module Project**: In multi-module scenarios, `projectPath` **MUST** be the specific module's path (e.g., where its `pom.xml`, `build.gradle`, or `package.json` resides), **NOT** the root project path.
    - **WARNING:** If tool not found or returns `Unauthorized`, **STOP** and follow [Pre-check](#pre-check).
 2. **Install SDK/Agent**: Follow language guide:
    - Java Agent: [Java Agent Installation](./references/install/java.md) (Creates wrapper scripts in `scripts/` to inject agent)
