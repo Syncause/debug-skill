@@ -118,9 +118,10 @@ if __name__ == "__main__":
 #### 6.5 Execute Reproduction Script and Collect Trace Data
 
 > [!WARNING]
-> **MANDATORY AI INSTRUCTION**: For Java projects, you **MUST** prepend `./scripts/run_java_with_agent.sh ` (or `.ps1` on Windows) to EVERY Java command (`mvn`, `gradlew`, `java`). 
+> **MANDATORY AI INSTRUCTION**: For Java projects, you **MUST** use the wrapper script to run EVERY Java command (`mvn`, `gradlew`, `java`). 
 > ❌ DO NOT run `mvn test` directly. 
-> ✅ DO run `./scripts/run_java_with_agent.sh mvn test -Dtest=ClassName`. 
+> ✅ **Linux/Mac**: DO run `./scripts/run_java_with_agent.sh mvn test -Dtest=ClassName`. 
+> ✅ **Windows PowerShell**: DO run `.\scripts\run_java_with_agent.ps1 "mvn test -Dtest=ClassName"` (Quotes are MANDATORY).
 > 
 > **CRITICAL: Single Test Execution**: You **MUST** target a SINGLE test case (class or method). Running the full test suite (hundreds of tests) is FORBIDDEN as it is inefficient and generates excessive trace data. Target specific tests using:
 > - **Maven**: `-Dtest=ClassName#methodName`
@@ -131,8 +132,12 @@ if __name__ == "__main__":
 ```bash
 # Python
 python3 reproduce_issue.py
-# Java Agent
+
+# Java Agent (Linux/Mac)
 ./scripts/run_java_with_agent.sh mvn test -Dtest=ReproduceIssueTest
+
+# Java Agent (Windows PowerShell)
+.\scripts\run_java_with_agent.ps1 "mvn test -Dtest=ReproduceIssueTest"
 
 # Node.js
 npx jest reproduceIssue.test.js
