@@ -55,11 +55,12 @@ fi
 
 ```powershell
 param(
-    [Parameter(Mandatory=$true, ValueFromRemainingArguments=$true)]
-    [string[]]$Command
+    [Parameter(Mandatory=$true)]
+    [string]$Command
 )
 
 # Description: Wrapper to run any command with the Syncause Agent loaded via JAVA_TOOL_OPTIONS locally.
+# Usage: ./scripts/run_java_with_agent.ps1 "mvn test -Dtest=MyTest"
 
 # === CONFIGURATION (Maintainer: Update version here) ===
 $AGENT_VERSION = "0.1.2"
@@ -81,21 +82,13 @@ if (!(Test-Path $agentJar)) {
     Invoke-WebRequest -Uri $url -OutFile $agentJar
 }
 
-# Set local environment and execute
+# Build the agent option string
 $agentOpts = "-javaagent:$agentJar=api_key=$env:API_KEY,project_name=$env:APP_NAME,project_id=$env:PROJECT_ID"
-if ($env:JAVA_TOOL_OPTIONS -notlike "*$agentOpts*") {
-    $env:JAVA_TOOL_OPTIONS = "$($env:JAVA_TOOL_OPTIONS) $agentOpts".Trim()
-}
 
-# Run the command with arguments
-# If the command and args were passed as a single string (e.g., "ant test"), split them.
-if ($Command.Count -eq 1 -and $Command[0] -like "* *") {
-    $Command = $Command[0] -split "\s+"
-}
-
-# Explicitly separate the executable from the arguments for the call operator (&)
-$executable, $arguments = $Command
-& $executable $arguments
+# Execute the command in a child process with JAVA_TOOL_OPTIONS set to ONLY the agent.
+# Using cmd /c ensures the env var is local to this invocation and does not accumulate
+# across repeated calls in the same shell session.
+cmd /c "set JAVA_TOOL_OPTIONS=$agentOpts && $Command"
 ```
 
 ## 3. Configuration
@@ -107,14 +100,27 @@ Ensure you have the following environment variables set (obtained from `setup_pr
 ## 4. Usage
 Prefix any Java-related command with the wrapper script to enable instrumentation.
 
-**Examples:**
+### Linux / macOS / WSL (`.sh`)
+Arguments are passed directly — no quoting needed.
+
 - Maven (Specific test): `./scripts/run_java_with_agent.sh mvn test -Dtest=MyTestClass`
-- Maven (All tests): `./scripts/run_java_with_agent.sh mvn test`
 - Gradle (Specific test): `./scripts/run_java_with_agent.sh ./gradlew test --tests MyTestClass`
-- Ant: `./scripts/run_java_with_agent.sh ant test` (or specific target: `./scripts/run_java_with_agent.sh ant test-single -Dtestcase=MyTestClass`)
+- Ant (Specific test): `./scripts/run_java_with_agent.sh ant test -Dtestcase=MyTestClass` (Note: target may vary, e.g., `ant test-single`)
 - Direct Java: `./scripts/run_java_with_agent.sh java -jar target/app.jar`
+
+### Windows PowerShell (`.ps1`)
+> [!IMPORTANT]
+> The **entire command must be passed as a single quoted string**. PowerShell treats `-D` flags containing dots (e.g., `-Djacoco.skip=true`) as variable expressions when they appear as separate arguments, which causes a parse error. Wrapping the whole command in quotes avoids this.
+
+- Maven (Specific test): `./scripts/run_java_with_agent.ps1 "mvn test -Dtest=MyTestClass"`
+- Gradle (Specific test): `./scripts/run_java_with_agent.ps1 "./gradlew test --tests MyTestClass"`
+- Ant (Specific test): `./scripts/run_java_with_agent.ps1 "ant test -Dtestcase=MyTestClass"`
+- Direct Java: `./scripts/run_java_with_agent.ps1 "java -jar target/app.jar"`
+
+> [!IMPORTANT]
+> **Never run the full test suite** (e.g., `mvn test` without `-Dtest`) with the agent. This is extremely inefficient for debugging and can produce overwhelming trace data. Always target the specific test related to the issue.
 
 
 ## 5. Verification
-Run a simple command like `./scripts/run_java_with_agent.sh java -version`. You should see `Downloading Agent...` if it's the first time.
+Run a simple command like `./scripts/run_java_with_agent.sh java -version` (Linux/macOS) or `./scripts/run_java_with_agent.ps1 "java -version"` (Windows). You should see `Downloading Agent...` if it's the first time.
 Check the console output for any agent initialization messages.

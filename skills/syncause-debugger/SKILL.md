@@ -115,11 +115,12 @@ Verify SDK NOT already installed:
 > [!WARNING]
 > **MANDATORY AI INSTRUCTION**: For Java projects, you **MUST** prepend `./scripts/run_java_with_agent.sh ` (or `.ps1` on Windows) to EVERY Java command (`mvn`, `gradlew`, `java`). 
 > ❌ DO NOT run `mvn test` directly. 
-> ✅ DO run `./scripts/run_java_with_agent.sh mvn test`. 
+> ✅ DO run `./scripts/run_java_with_agent.sh mvn test -Dtest=ClassName`. 
 > 
-> **Selective Testing**: To maintain efficiency in large projects, **avoid running the full test suite**. Target specific tests using:
+> **CRITICAL: Single Test Execution**: You **MUST** target a SINGLE test case (class or method). Running the full test suite (hundreds of tests) is FORBIDDEN as it is inefficient and generates excessive trace data. Target specific tests using:
 > - **Maven**: `-Dtest=ClassName#methodName`
 > - **Gradle**: `--tests ClassName.methodName`
+> - **Ant**: `-Dtestcase=ClassName` (or project-specific property)
 
 
    1. **Run reproduction script**:
