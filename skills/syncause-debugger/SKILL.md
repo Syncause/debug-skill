@@ -104,9 +104,13 @@ Use closest user entry point first, then sidecar reproduction if needed, and val
    - Error location/type match issue description
    - Key variables are visible in snapshots
 6. If quality gate fails, iterate reproduction and collect a new trace.
+7. **MANDATORY GATE:** You MUST run the following command before starting OMO-3:
+   `python ./scripts/omo_gatekeeper.py --gate omo2 --trace-id <Your_Found_Trace_Id>`
+8. If the script exits with code 1 (REJECTED), you MUST stay in OMO-2 and try again. Do not proceed to OMO-3.
 
 ### Exit Criteria
 
+- Gatekeeper script returns `[PASSED]`.
 - One or more valid failing `traceId`s linked to this run marker.
 
 ## OMO-3: Evidence and Root Cause
@@ -127,9 +131,13 @@ Inspect call tree + method snapshots, and compare traces when needed.
 4. State root cause using explicit attribution:
    - "Based on live data captured by Syncause..."
    - Include exact variable/value/path/method evidence.
+5. **MANDATORY GATE:** You MUST run the following command before starting OMO-4:
+   `python ./scripts/omo_gatekeeper.py --gate omo3 --cause-file <File_To_Fix>`
+6. If the script exits with code 1 (REJECTED), you MUST stay in OMO-3 and gather more evidence. Do not proceed to OMO-4 code edits.
 
 ### Exit Criteria
 
+- Gatekeeper script returns `[PASSED]`.
 - Root cause is specific, evidence-backed, and references inspected methods.
 
 ## OMO-4: Minimal Fix and Verification
