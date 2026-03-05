@@ -19,6 +19,29 @@ Use this skill with an explicit OMO loop:
 
 Run OMO steps in order. Do not edit production code before OMO-3 has inspected at least one valid trace.
 
+## Hard Gate Execution
+
+When available, execute this skill with the gate runner to enforce fail-closed step checks:
+
+1. Initialize gate state once per run:
+   - `python3 .agent/skills/syncause-debug-skill/scripts/gate_runner.py --skill .agent/skills/syncause-debug-skill/SKILL.md --cwd . init`
+2. After completing each OMO step, record evidence:
+   - `python3 .agent/skills/syncause-debug-skill/scripts/gate_runner.py --skill .agent/skills/syncause-debug-skill/SKILL.md --cwd . checkpoint --step OMO-1 --json '{"mcpToolsCallable":true,"projectId":"<id>","auth":"ok","sdkInstalled":true}'`
+3. Verify the step before proceeding:
+   - `python3 .agent/skills/syncause-debug-skill/scripts/gate_runner.py --skill .agent/skills/syncause-debug-skill/SKILL.md --cwd . verify --step OMO-1`
+4. If a verification fails, stop and report `BLOCKED`.
+5. Check current status at any time:
+   - `python3 .agent/skills/syncause-debug-skill/scripts/gate_runner.py --skill .agent/skills/syncause-debug-skill/SKILL.md --cwd . status`
+
+Gate layers:
+
+- `process`: order and step completion facts.
+- `evidence`: trace IDs, inspected methods, and concrete runtime data.
+- `change`: patch boundary and mutation safety.
+- `quality`: repro/test outcomes and release confidence.
+
+Each gate supports `mode: hard|soft`. Hard gate failure blocks progress; soft gate failure warns but does not block.
+
 ## OMO-1: Trace-Ready Setup
 
 ### Outcome
@@ -160,3 +183,361 @@ Remove temporary artifacts and publish a fixed response contract.
 1. No code edits before at least one inspected trace.
 2. No "probably" root-cause claims without trace values.
 3. No skipping OMO-5 after a successful fix flow.
+
+## Gate Contract (Machine Readable)
+
+The following JSON block is consumed by `scripts/gate_runner.py`.
+
+```gate-spec-json
+{
+  "version": 1,
+  "workflow": "syncause-debug-omo",
+  "fail_closed": true,
+  "steps": [
+    {
+      "id": "OMO-1",
+      "title": "Trace-Ready Setup",
+      "operations": [
+        {
+          "id": "setup-and-sdk-check",
+          "type": "manual",
+          "description": "Run MCP tool checks, setup_project(projectPath), and SDK install validation."
+        }
+      ],
+      "gates": [
+        {
+          "id": "process",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "mcp-tools-callable",
+              "type": "checkpoint_path_equals",
+              "path": "mcpToolsCallable",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "project-id-present",
+              "type": "checkpoint_path_exists",
+              "path": "projectId"
+            },
+            {
+              "id": "auth-ok",
+              "type": "checkpoint_path_equals",
+              "path": "auth",
+              "value": "ok"
+            },
+            {
+              "id": "sdk-installed",
+              "type": "checkpoint_path_equals",
+              "path": "sdkInstalled",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "change",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "no-new-git-changes",
+              "type": "git_no_new_changes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OMO-2",
+      "title": "Reproduce and Capture",
+      "requires": [
+        "OMO-1"
+      ],
+      "operations": [
+        {
+          "id": "reproduce-and-collect-trace",
+          "type": "manual",
+          "description": "Run reproduction path and collect failing traceId values."
+        }
+      ],
+      "gates": [
+        {
+          "id": "process",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "run-marker-created",
+              "type": "checkpoint_path_equals",
+              "path": "runMarkerCreated",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "failing-traceids",
+              "type": "checkpoint_array_nonempty",
+              "path": "failingTraceIds"
+            },
+            {
+              "id": "call-chain-complete",
+              "type": "checkpoint_path_equals",
+              "path": "callChainComplete",
+              "value": true
+            },
+            {
+              "id": "key-variables-visible",
+              "type": "checkpoint_path_equals",
+              "path": "keyVariablesVisible",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "quality",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "reproduction-failed",
+              "type": "checkpoint_path_equals",
+              "path": "reproductionFailed",
+              "value": true
+            },
+            {
+              "id": "happy-path-passed",
+              "type": "checkpoint_path_equals",
+              "path": "happyPathPassed",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "change",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "no-new-git-changes",
+              "type": "git_no_new_changes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OMO-3",
+      "title": "Evidence and Root Cause",
+      "requires": [
+        "OMO-2"
+      ],
+      "operations": [
+        {
+          "id": "trace-analysis",
+          "type": "manual",
+          "description": "Inspect trace insight and method snapshots, then write trace-backed root cause."
+        }
+      ],
+      "gates": [
+        {
+          "id": "process",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "trace-insight-inspected",
+              "type": "checkpoint_path_equals",
+              "path": "traceInsightInspected",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "analysis-traceid-present",
+              "type": "checkpoint_path_exists",
+              "path": "traceId"
+            },
+            {
+              "id": "inspected-methods",
+              "type": "checkpoint_array_nonempty",
+              "path": "inspectedMethods"
+            },
+            {
+              "id": "root-cause-statement",
+              "type": "checkpoint_path_exists",
+              "path": "rootCauseStatement"
+            },
+            {
+              "id": "evidence-values",
+              "type": "checkpoint_array_nonempty",
+              "path": "evidenceValues"
+            }
+          ]
+        },
+        {
+          "id": "quality",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "syncause-attribution",
+              "type": "checkpoint_path_equals",
+              "path": "rootCauseAttributedToSyncause",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "change",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "no-new-git-changes",
+              "type": "git_no_new_changes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OMO-4",
+      "title": "Minimal Fix and Verification",
+      "requires": [
+        "OMO-3"
+      ],
+      "operations": [
+        {
+          "id": "apply-fix-and-test",
+          "type": "manual",
+          "description": "Apply minimal patch, rerun reproduction/happy path, and run targeted tests."
+        }
+      ],
+      "gates": [
+        {
+          "id": "process",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "fix-applied",
+              "type": "checkpoint_path_equals",
+              "path": "fixApplied",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "change",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "minimal-patch",
+              "type": "checkpoint_path_equals",
+              "path": "minimalPatch",
+              "value": true
+            },
+            {
+              "id": "changed-files-recorded",
+              "type": "checkpoint_array_nonempty",
+              "path": "changedFiles"
+            }
+          ]
+        },
+        {
+          "id": "quality",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "reproduction-now-passes",
+              "type": "checkpoint_path_equals",
+              "path": "reproductionNoLongerFails",
+              "value": true
+            },
+            {
+              "id": "happy-path-passed",
+              "type": "checkpoint_path_equals",
+              "path": "happyPathPassed",
+              "value": true
+            },
+            {
+              "id": "targeted-tests-passed",
+              "type": "checkpoint_path_equals",
+              "path": "targetedTestsPassed",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OMO-5",
+      "title": "Teardown and Report",
+      "requires": [
+        "OMO-4"
+      ],
+      "operations": [
+        {
+          "id": "teardown-and-report",
+          "type": "manual",
+          "description": "Remove sidecar files, cleanup Syncause artifacts, and output final report contract."
+        }
+      ],
+      "gates": [
+        {
+          "id": "process",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "sidecars-removed",
+              "type": "checkpoint_path_equals",
+              "path": "sidecarsRemoved",
+              "value": true
+            },
+            {
+              "id": "runtime-artifacts-cleaned",
+              "type": "checkpoint_path_equals",
+              "path": "runtimeArtifactsCleaned",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "flow-status-present",
+              "type": "checkpoint_path_exists",
+              "path": "finalReport.flowStatus"
+            },
+            {
+              "id": "next-action-present",
+              "type": "checkpoint_path_exists",
+              "path": "finalReport.nextAction"
+            }
+          ]
+        },
+        {
+          "id": "quality",
+          "mode": "hard",
+          "verifiers": [
+            {
+              "id": "decision-continue",
+              "type": "checkpoint_path_equals",
+              "path": "finalReport.decision",
+              "value": "CONTINUE"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
