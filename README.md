@@ -1,22 +1,27 @@
-# Syncause Debug Skill
+# Syncause: Fix the Real Problem with Evidence
+**From reported bug to reviewable fix.**
 
-AI can write code fast, but it still debugs like it’s blind: it only sees static files and whatever you paste into chat.
+AI can write code fast, but it still debugs like it’s blind. Without evidence, agents often guess and only fix symptoms, leading to "still broken" loops that burn time and tokens.
 
-**Without Syncause**, coding agents often guess and only fix symptoms, so you may need to prompt the agent multiple times to fix the root cause.
+**Syncause** empowers your AI agent with a professional, evidence-based debugging workflow:
+1.  **Reproduce the issue**: Turn a reported failure into a reproducible fact. No more guessing what triggered the bug.
+2.  **Fix from evidence**: Access stack traces, request params, and variable snapshots from the moment the bug occurred. Fixes are based on **what actually happened**, not guesswork.
+3.  **Review the repair report**: Every fix is backed by cited evidence. See exactly why the code changed and the data that proves the fix is correct.
 
-**With Syncause**, agents can fix the root cause in one go. The Syncause debug skill lets your AI agent pull **runtime facts**—stack traces, request params, function inputs/outputs, key variable snapshots, and timelines—so fixes are based on **what actually happened**, not guesses.
+### Mandatory Instruction Set
 
-This skill is a mandatory instruction set that constrains and guides the Agent's behavior:
+Syncause is a mandatory skill that constrains the Agent's behavior to ensure high-quality, professional repairs:
+- **Mandatory Evidence Gathering**: Before offering a fix, the Agent MUST fetch Runtime Facts to understand the failure context.
+- **Evidence-Based Repair**: When analyzing the issue, the Agent is required to explicitly cite specific data points (e.g., "The stack trace shows `user_id` was `null` at line 42...").
+- **Reviewable Results**: Moves the agent from "just patching" to "explaining and proving" the fix.
 
-- Mandatory Evidence Gathering: Before offering a fix, the Agent must call the MCP to fetch the Runtime Facts from the moment the bug occurred.
-- Evidence-Based Repair: When analyzing the issue, the Agent is required to explicitly cite specific data points (e.g., "According to the stack trace, variable user_id was null at line 42...").
-- No More Guessing: This fundamentally prevents the AI from "hallucinating code" when it lacks context.
+## How it works
 
-## Typical use cases
-- “It looks correct but still breaks” bugs
-- Flaky failures that only show up at runtime
-- Request/response mismatch, unexpected inputs, wrong state transitions
-- Regressions after an AI-generated change
+Syncause uses advanced **Tracing technology** to track all function calls and their arguments across your application, which are called `Runtime Facts`.
+
+- **Full Traceability**: We record the execution path in the background, capturing how data flows through your system.
+- **Deep Visibility**: When an error occurs, Syncause provides a "flight recorder" view of the exact sequence of calls leading up to the failure.
+- **Zero Configuration**: Instrumentation is handled automatically, so your agent gets deep insights without you manually adding logs or breakpoints.
 
 ## Installation
 ### Automatic Installation
